@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/ExampleConnection.c" "CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o" "gcc" "CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o.d"
+  "/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ExampleConnection.c" "CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o" "gcc" "CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples"
+CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build"
+CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CheckLicenseFlagSample.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/CheckLicenseFlagSample.dir/progress.make
 include CMakeFiles/CheckLicenseFlagSample.dir/flags.make
 
 CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o: CMakeFiles/CheckLicenseFlagSample.dir/flags.make
-CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o: /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/samples/CheckLicenseFlagSample.c
+CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o: /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/CheckLicenseFlagSample.c
 CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o: CMakeFiles/CheckLicenseFlagSample.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o -MF CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o.d -o CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o -c "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/CheckLicenseFlagSample.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o -MF CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o.d -o CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o -c /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/CheckLicenseFlagSample.c
 
 CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/CheckLicenseFlagSample.c" > CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/CheckLicenseFlagSample.c > CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.i
 
 CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/CheckLicenseFlagSample.c" -o CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/CheckLicenseFlagSample.c -o CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.s
 
 # Object files for target CheckLicenseFlagSample
 CheckLicenseFlagSample_OBJECTS = \
@@ -89,14 +89,14 @@ CheckLicenseFlagSample_OBJECTS = \
 
 # External object files for target CheckLicenseFlagSample
 CheckLicenseFlagSample_EXTERNAL_OBJECTS = \
-"/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o"
+"/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o"
 
 CheckLicenseFlagSample: CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o
 CheckLicenseFlagSample: CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o
 CheckLicenseFlagSample: CMakeFiles/CheckLicenseFlagSample.dir/build.make
 CheckLicenseFlagSample: /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/lib/libLeapC.5.dylib
 CheckLicenseFlagSample: CMakeFiles/CheckLicenseFlagSample.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable CheckLicenseFlagSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable CheckLicenseFlagSample"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CheckLicenseFlagSample.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/CheckLicenseFlagSample.dir/clean:
 .PHONY : CMakeFiles/CheckLicenseFlagSample.dir/clean
 
 CMakeFiles/CheckLicenseFlagSample.dir/depend:
-	cd "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles/CheckLicenseFlagSample.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles/CheckLicenseFlagSample.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/CheckLicenseFlagSample.dir/depend
 

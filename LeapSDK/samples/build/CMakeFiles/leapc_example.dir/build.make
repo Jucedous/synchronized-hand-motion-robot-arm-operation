@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples"
+CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build"
+CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/leapc_example.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/leapc_example.dir/progress.make
 include CMakeFiles/leapc_example.dir/flags.make
 
 CMakeFiles/leapc_example.dir/leapc_main.c.o: CMakeFiles/leapc_example.dir/flags.make
-CMakeFiles/leapc_example.dir/leapc_main.c.o: /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/samples/leapc_main.c
+CMakeFiles/leapc_example.dir/leapc_main.c.o: /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/leapc_main.c
 CMakeFiles/leapc_example.dir/leapc_main.c.o: CMakeFiles/leapc_example.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/leapc_example.dir/leapc_main.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/leapc_example.dir/leapc_main.c.o -MF CMakeFiles/leapc_example.dir/leapc_main.c.o.d -o CMakeFiles/leapc_example.dir/leapc_main.c.o -c "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/leapc_main.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/leapc_example.dir/leapc_main.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/leapc_example.dir/leapc_main.c.o -MF CMakeFiles/leapc_example.dir/leapc_main.c.o.d -o CMakeFiles/leapc_example.dir/leapc_main.c.o -c /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/leapc_main.c
 
 CMakeFiles/leapc_example.dir/leapc_main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/leapc_example.dir/leapc_main.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/leapc_main.c" > CMakeFiles/leapc_example.dir/leapc_main.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/leapc_main.c > CMakeFiles/leapc_example.dir/leapc_main.c.i
 
 CMakeFiles/leapc_example.dir/leapc_main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/leapc_example.dir/leapc_main.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/leapc_main.c" -o CMakeFiles/leapc_example.dir/leapc_main.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/leapc_main.c -o CMakeFiles/leapc_example.dir/leapc_main.c.s
 
 # Object files for target leapc_example
 leapc_example_OBJECTS = \
@@ -94,9 +94,9 @@ leapc_example: CMakeFiles/leapc_example.dir/leapc_main.c.o
 leapc_example: CMakeFiles/leapc_example.dir/build.make
 leapc_example: /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/lib/libLeapC.5.dylib
 leapc_example: CMakeFiles/leapc_example.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable leapc_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable leapc_example"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/leapc_example.dir/link.txt --verbose=$(VERBOSE)
-	/usr/local/Cellar/cmake/3.27.6/bin/cmake -E copy /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/lib/libLeapC.5.dylib /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/samples/build
+	/usr/local/Cellar/cmake/3.27.6/bin/cmake -E copy /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/lib/libLeapC.5.dylib /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build
 
 # Rule to build all files generated by this target.
 CMakeFiles/leapc_example.dir/build: leapc_example
@@ -107,6 +107,6 @@ CMakeFiles/leapc_example.dir/clean:
 .PHONY : CMakeFiles/leapc_example.dir/clean
 
 CMakeFiles/leapc_example.dir/depend:
-	cd "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles/leapc_example.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles/leapc_example.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/leapc_example.dir/depend
 

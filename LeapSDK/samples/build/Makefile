@@ -57,10 +57,10 @@ RM = /usr/local/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples"
+CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build"
+CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles" "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

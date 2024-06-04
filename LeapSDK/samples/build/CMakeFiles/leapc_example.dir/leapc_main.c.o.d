@@ -1,5 +1,5 @@
 CMakeFiles/leapc_example.dir/leapc_main.c.o: \
-  /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/samples/leapc_main.c \
+  /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/leapc_main.c \
   /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/include/LeapC.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/stdint.h \

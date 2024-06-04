@@ -1,6 +1,6 @@
 CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o: \
-  /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/samples/ExampleConnection.c \
-  /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/samples/ExampleConnection.h \
+  /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ExampleConnection.c \
+  /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ExampleConnection.h \
   /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/include/LeapC.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/stdint.h \

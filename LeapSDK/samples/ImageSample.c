@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <netinet/in.h>
 #include "LeapC.h"
 #include "ExampleConnection.h"
 
@@ -42,8 +43,7 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
     time_t current_time;
     time(&current_time);
 
-    // Check if 5 seconds have passed since the last print
-    if (difftime(current_time, last_time) >= 3) {
+    if (difftime(current_time, last_time) >= 0.5) {
       if (frame->nHands >0) {
         printf("Frame %lli with %i hands.\n", (long long int)frame->info.frame_id, frame->nHands);
         for (uint32_t h = 0; h < frame->nHands; h++) {
@@ -53,11 +53,25 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
                     hand->palm.position.x,
                     hand->palm.position.y,
                     hand->palm.position.z);
+
+            int clientSocket;
+            struct sockaddr_in serverAddr;
+            char buffer[1024];
+
+            clientSocket = socket(PF_INET, SOCK_STREAM, 0);
+            serverAddr.sin_family = AF_INET;
+            serverAddr.sin_port = htons(7891);
+            serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+            connect(clientSocket, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
+
+            sprintf(buffer, "%f", hand->palm.position.y);
+            send(clientSocket, buffer, strlen(buffer), 0);
         }
       } else {
         printf("No hands detected.\n");
       }
-        last_time = current_time; // Update last_time to the current time after printing
+        last_time = current_time;
     }
 }
 

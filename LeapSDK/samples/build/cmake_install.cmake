@@ -1,4 +1,4 @@
-# Install script for directory: /Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples
+# Install script for directory: /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

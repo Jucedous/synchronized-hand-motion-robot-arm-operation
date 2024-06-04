@@ -11,7 +11,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/lib/cmake/LeapCTargets.cmake"
   "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/lib/cmake/LeapSDK/leapsdk-config.cmake"
   "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/lib/cmake/LeapSDK/leapsdk-configVersion.cmake"
-  "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/samples/CMakeLists.txt"
+  "/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/CMakeLists.txt"
   "CMakeFiles/3.27.6/CMakeCCompiler.cmake"
   "CMakeFiles/3.27.6/CMakeSystem.cmake"
   "/usr/local/Cellar/cmake/3.27.6/share/cmake/Modules/CMakeCCompiler.cmake.in"
