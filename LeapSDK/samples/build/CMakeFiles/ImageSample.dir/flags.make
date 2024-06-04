@@ -4,7 +4,7 @@
 # compile C with /Library/Developer/CommandLineTools/usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples -isystem "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/include"
+C_INCLUDES = -I/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples -isystem "/Applications/Ultraleap Hand Tracking.app/Contents/LeapSDK/include"
 
 C_FLAGS =  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5
 

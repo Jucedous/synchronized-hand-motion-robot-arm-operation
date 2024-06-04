@@ -1,5 +1,5 @@
 CMakeFiles/PollingSample.dir/PollingSample.c.o: \
-  /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/PollingSample.c \
+  /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/PollingSample.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/cdefs.h \
@@ -99,4 +99,4 @@ CMakeFiles/PollingSample.dir/PollingSample.c.o: \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
-  /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ExampleConnection.h
+  /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ExampleConnection.h

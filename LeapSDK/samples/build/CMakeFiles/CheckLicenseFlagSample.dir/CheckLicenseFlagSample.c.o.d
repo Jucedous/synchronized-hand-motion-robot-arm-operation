@@ -1,5 +1,5 @@
 CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.o: \
-  /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/CheckLicenseFlagSample.c \
+  /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/CheckLicenseFlagSample.c \
   /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/include/LeapC.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/stdint.h \

@@ -54,10 +54,10 @@ RM = /usr/local/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples
+CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build
+CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -97,14 +97,14 @@ clean: CMakeFiles/MultiDeviceSample.dir/clean
 CMakeFiles/leapc_example.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/leapc_example.dir/build.make CMakeFiles/leapc_example.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/leapc_example.dir/build.make CMakeFiles/leapc_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=15,16 "Built target leapc_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=15,16 "Built target leapc_example"
 .PHONY : CMakeFiles/leapc_example.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/leapc_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/leapc_example.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/leapc_example.dir/rule
 
 # Convenience name for target.
@@ -123,14 +123,14 @@ CMakeFiles/leapc_example.dir/clean:
 CMakeFiles/libExampleConnection.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/libExampleConnection.dir/build.make CMakeFiles/libExampleConnection.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/libExampleConnection.dir/build.make CMakeFiles/libExampleConnection.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=17 "Built target libExampleConnection"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=17 "Built target libExampleConnection"
 .PHONY : CMakeFiles/libExampleConnection.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/libExampleConnection.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/libExampleConnection.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/libExampleConnection.dir/rule
 
 # Convenience name for target.
@@ -149,14 +149,14 @@ CMakeFiles/libExampleConnection.dir/clean:
 CMakeFiles/CallbackSample.dir/all: CMakeFiles/libExampleConnection.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CallbackSample.dir/build.make CMakeFiles/CallbackSample.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CallbackSample.dir/build.make CMakeFiles/CallbackSample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=1,2 "Built target CallbackSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=1,2 "Built target CallbackSample"
 .PHONY : CMakeFiles/CallbackSample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CallbackSample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/CallbackSample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/CallbackSample.dir/rule
 
 # Convenience name for target.
@@ -175,14 +175,14 @@ CMakeFiles/CallbackSample.dir/clean:
 CMakeFiles/ImageSample.dir/all: CMakeFiles/libExampleConnection.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ImageSample.dir/build.make CMakeFiles/ImageSample.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ImageSample.dir/build.make CMakeFiles/ImageSample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=7,8 "Built target ImageSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=7,8 "Built target ImageSample"
 .PHONY : CMakeFiles/ImageSample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ImageSample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ImageSample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/ImageSample.dir/rule
 
 # Convenience name for target.
@@ -201,14 +201,14 @@ CMakeFiles/ImageSample.dir/clean:
 CMakeFiles/PollingSample.dir/all: CMakeFiles/libExampleConnection.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PollingSample.dir/build.make CMakeFiles/PollingSample.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PollingSample.dir/build.make CMakeFiles/PollingSample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=13,14 "Built target PollingSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=13,14 "Built target PollingSample"
 .PHONY : CMakeFiles/PollingSample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/PollingSample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/PollingSample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/PollingSample.dir/rule
 
 # Convenience name for target.
@@ -227,14 +227,14 @@ CMakeFiles/PollingSample.dir/clean:
 CMakeFiles/InterpolationSample.dir/all: CMakeFiles/libExampleConnection.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/InterpolationSample.dir/build.make CMakeFiles/InterpolationSample.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/InterpolationSample.dir/build.make CMakeFiles/InterpolationSample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=9,10 "Built target InterpolationSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=9,10 "Built target InterpolationSample"
 .PHONY : CMakeFiles/InterpolationSample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/InterpolationSample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/InterpolationSample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/InterpolationSample.dir/rule
 
 # Convenience name for target.
@@ -253,14 +253,14 @@ CMakeFiles/InterpolationSample.dir/clean:
 CMakeFiles/CheckLicenseFlagSample.dir/all: CMakeFiles/libExampleConnection.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CheckLicenseFlagSample.dir/build.make CMakeFiles/CheckLicenseFlagSample.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CheckLicenseFlagSample.dir/build.make CMakeFiles/CheckLicenseFlagSample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=3,4 "Built target CheckLicenseFlagSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=3,4 "Built target CheckLicenseFlagSample"
 .PHONY : CMakeFiles/CheckLicenseFlagSample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CheckLicenseFlagSample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/CheckLicenseFlagSample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/CheckLicenseFlagSample.dir/rule
 
 # Convenience name for target.
@@ -279,14 +279,14 @@ CMakeFiles/CheckLicenseFlagSample.dir/clean:
 CMakeFiles/FiducialTrackingSample.dir/all: CMakeFiles/libExampleConnection.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FiducialTrackingSample.dir/build.make CMakeFiles/FiducialTrackingSample.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FiducialTrackingSample.dir/build.make CMakeFiles/FiducialTrackingSample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=5,6 "Built target FiducialTrackingSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=5,6 "Built target FiducialTrackingSample"
 .PHONY : CMakeFiles/FiducialTrackingSample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/FiducialTrackingSample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/FiducialTrackingSample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/FiducialTrackingSample.dir/rule
 
 # Convenience name for target.
@@ -305,14 +305,14 @@ CMakeFiles/FiducialTrackingSample.dir/clean:
 CMakeFiles/MultiDeviceSample.dir/all: CMakeFiles/libExampleConnection.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MultiDeviceSample.dir/build.make CMakeFiles/MultiDeviceSample.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MultiDeviceSample.dir/build.make CMakeFiles/MultiDeviceSample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=11,12 "Built target MultiDeviceSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=11,12 "Built target MultiDeviceSample"
 .PHONY : CMakeFiles/MultiDeviceSample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/MultiDeviceSample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MultiDeviceSample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/MultiDeviceSample.dir/rule
 
 # Convenience name for target.

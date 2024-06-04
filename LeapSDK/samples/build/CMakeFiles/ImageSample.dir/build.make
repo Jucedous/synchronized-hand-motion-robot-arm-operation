@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples
+CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build
+CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ImageSample.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/ImageSample.dir/progress.make
 include CMakeFiles/ImageSample.dir/flags.make
 
 CMakeFiles/ImageSample.dir/ImageSample.c.o: CMakeFiles/ImageSample.dir/flags.make
-CMakeFiles/ImageSample.dir/ImageSample.c.o: /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ImageSample.c
+CMakeFiles/ImageSample.dir/ImageSample.c.o: /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ImageSample.c
 CMakeFiles/ImageSample.dir/ImageSample.c.o: CMakeFiles/ImageSample.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ImageSample.dir/ImageSample.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ImageSample.dir/ImageSample.c.o -MF CMakeFiles/ImageSample.dir/ImageSample.c.o.d -o CMakeFiles/ImageSample.dir/ImageSample.c.o -c /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ImageSample.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ImageSample.dir/ImageSample.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ImageSample.dir/ImageSample.c.o -MF CMakeFiles/ImageSample.dir/ImageSample.c.o.d -o CMakeFiles/ImageSample.dir/ImageSample.c.o -c /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ImageSample.c
 
 CMakeFiles/ImageSample.dir/ImageSample.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ImageSample.dir/ImageSample.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ImageSample.c > CMakeFiles/ImageSample.dir/ImageSample.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ImageSample.c > CMakeFiles/ImageSample.dir/ImageSample.c.i
 
 CMakeFiles/ImageSample.dir/ImageSample.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ImageSample.dir/ImageSample.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ImageSample.c -o CMakeFiles/ImageSample.dir/ImageSample.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ImageSample.c -o CMakeFiles/ImageSample.dir/ImageSample.c.s
 
 # Object files for target ImageSample
 ImageSample_OBJECTS = \
@@ -89,14 +89,14 @@ ImageSample_OBJECTS = \
 
 # External object files for target ImageSample
 ImageSample_EXTERNAL_OBJECTS = \
-"/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o"
+"/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o"
 
 ImageSample: CMakeFiles/ImageSample.dir/ImageSample.c.o
 ImageSample: CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o
 ImageSample: CMakeFiles/ImageSample.dir/build.make
 ImageSample: /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/lib/libLeapC.5.dylib
 ImageSample: CMakeFiles/ImageSample.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable ImageSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable ImageSample"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ImageSample.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/ImageSample.dir/clean:
 .PHONY : CMakeFiles/ImageSample.dir/clean
 
 CMakeFiles/ImageSample.dir/depend:
-	cd /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles/ImageSample.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles/ImageSample.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/ImageSample.dir/depend
 

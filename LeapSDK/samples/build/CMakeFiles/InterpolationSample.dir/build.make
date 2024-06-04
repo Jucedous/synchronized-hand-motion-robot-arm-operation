@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples
+CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build
+CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/InterpolationSample.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/InterpolationSample.dir/progress.make
 include CMakeFiles/InterpolationSample.dir/flags.make
 
 CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o: CMakeFiles/InterpolationSample.dir/flags.make
-CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o: /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/InterpolationSample.c
+CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o: /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/InterpolationSample.c
 CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o: CMakeFiles/InterpolationSample.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o -MF CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o.d -o CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o -c /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/InterpolationSample.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o -MF CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o.d -o CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o -c /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/InterpolationSample.c
 
 CMakeFiles/InterpolationSample.dir/InterpolationSample.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/InterpolationSample.dir/InterpolationSample.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/InterpolationSample.c > CMakeFiles/InterpolationSample.dir/InterpolationSample.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/InterpolationSample.c > CMakeFiles/InterpolationSample.dir/InterpolationSample.c.i
 
 CMakeFiles/InterpolationSample.dir/InterpolationSample.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/InterpolationSample.dir/InterpolationSample.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/InterpolationSample.c -o CMakeFiles/InterpolationSample.dir/InterpolationSample.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/InterpolationSample.c -o CMakeFiles/InterpolationSample.dir/InterpolationSample.c.s
 
 # Object files for target InterpolationSample
 InterpolationSample_OBJECTS = \
@@ -89,14 +89,14 @@ InterpolationSample_OBJECTS = \
 
 # External object files for target InterpolationSample
 InterpolationSample_EXTERNAL_OBJECTS = \
-"/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o"
+"/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o"
 
 InterpolationSample: CMakeFiles/InterpolationSample.dir/InterpolationSample.c.o
 InterpolationSample: CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o
 InterpolationSample: CMakeFiles/InterpolationSample.dir/build.make
 InterpolationSample: /Applications/Ultraleap\ Hand\ Tracking.app/Contents/LeapSDK/lib/libLeapC.5.dylib
 InterpolationSample: CMakeFiles/InterpolationSample.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable InterpolationSample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable InterpolationSample"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/InterpolationSample.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/InterpolationSample.dir/clean:
 .PHONY : CMakeFiles/InterpolationSample.dir/clean
 
 CMakeFiles/InterpolationSample.dir/depend:
-	cd /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles/InterpolationSample.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles/InterpolationSample.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/InterpolationSample.dir/depend
 

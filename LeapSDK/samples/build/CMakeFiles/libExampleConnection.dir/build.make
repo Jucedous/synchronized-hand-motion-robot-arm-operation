@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples
+CMAKE_SOURCE_DIR = /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build
+CMAKE_BINARY_DIR = /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/libExampleConnection.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/libExampleConnection.dir/progress.make
 include CMakeFiles/libExampleConnection.dir/flags.make
 
 CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o: CMakeFiles/libExampleConnection.dir/flags.make
-CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o: /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ExampleConnection.c
+CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o: /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ExampleConnection.c
 CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o: CMakeFiles/libExampleConnection.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o -MF CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o.d -o CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o -c /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ExampleConnection.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o -MF CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o.d -o CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o -c /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ExampleConnection.c
 
 CMakeFiles/libExampleConnection.dir/ExampleConnection.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/libExampleConnection.dir/ExampleConnection.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ExampleConnection.c > CMakeFiles/libExampleConnection.dir/ExampleConnection.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ExampleConnection.c > CMakeFiles/libExampleConnection.dir/ExampleConnection.c.i
 
 CMakeFiles/libExampleConnection.dir/ExampleConnection.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/libExampleConnection.dir/ExampleConnection.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/ExampleConnection.c -o CMakeFiles/libExampleConnection.dir/ExampleConnection.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/ExampleConnection.c -o CMakeFiles/libExampleConnection.dir/ExampleConnection.c.s
 
 libExampleConnection: CMakeFiles/libExampleConnection.dir/ExampleConnection.c.o
 libExampleConnection: CMakeFiles/libExampleConnection.dir/build.make
@@ -96,6 +96,6 @@ CMakeFiles/libExampleConnection.dir/clean:
 .PHONY : CMakeFiles/libExampleConnection.dir/clean
 
 CMakeFiles/libExampleConnection.dir/depend:
-	cd /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/leapmotion-sensor/LeapSDK/samples/build/CMakeFiles/libExampleConnection.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build /Users/zhaozilin/Documents/GitHub/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/CMakeFiles/libExampleConnection.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/libExampleConnection.dir/depend
 
