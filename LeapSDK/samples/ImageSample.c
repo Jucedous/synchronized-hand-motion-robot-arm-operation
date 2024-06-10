@@ -43,21 +43,35 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
     time(&current_time);
 
     // Check if 5 seconds have passed since the last print
-    if (difftime(current_time, last_time) >= 3) {
-      if (frame->nHands >0) {
-        printf("Frame %lli with %i hands.\n", (long long int)frame->info.frame_id, frame->nHands);
-        for (uint32_t h = 0; h < frame->nHands; h++) {
-            LEAP_HAND* hand = &frame->pHands[h];
-            printf("%s hand with position (%f, %f, %f).\n",
-                    (hand->type == eLeapHandType_Left ? "left" : "right"),
-                    hand->palm.position.x,
-                    hand->palm.position.y,
-                    hand->palm.position.z);
-        }
+    if (difftime(current_time, last_time) >= 0.5) {
+      // if (frame->nHands >0) {
+      //   printf("Frame %lli with %i hands.\n", (long long int)frame->info.frame_id, frame->nHands);
+      //   for (uint32_t h = 0; h < frame->nHands; h++) {
+      //       LEAP_HAND* hand = &frame->pHands[h];
+      //       printf("%s hand with position (%f, %f, %f).\n",
+      //               (hand->type == eLeapHandType_Left ? "left" : "right"),
+      //               hand->palm.position.x,
+      //               hand->palm.position.y,
+      //               hand->palm.position.z);
+      //       if (hand->grab_strength > 0.9) {
+      //         printf("Hand is closed\n");
+      //       }
+      //       if (hand->pinch_strength >0.7) {
+      //         printf("Pinch gesture detected\n");
+      //       }
+      //   }
+      // } else {
+      //   printf("No hands detected.\n");
+      // } 
+      // test subject
+      if (frame->nHands > 0) {
+        printf("True\n");
+        fflush(stdout);
       } else {
-        printf("No hands detected.\n");
+        printf("False\n");
+        fflush(stdout);
       }
-        last_time = current_time; // Update last_time to the current time after printing
+      last_time = current_time; // Update last_time to the current time after printing
     }
 }
 

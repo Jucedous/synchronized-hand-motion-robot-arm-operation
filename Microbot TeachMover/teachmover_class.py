@@ -1,10 +1,6 @@
 import serial
 import time
-
-class Result:
-    def __init__(self, statusCode: int, data = None):
-        self.statusCode = statusCode
-        self.data = data
+from IK import InverseKinematics
 
 class TeachMover:
     def __init__(self, portID: str, baudRate=9600):
@@ -37,7 +33,7 @@ class TeachMover:
     def setZero(self):
         return self.send_cmd("@RESET")
     
-    def readPosition(self) -> Result:
+    def readPosition(self):
         ret = self.send_cmd("@READ")
         #Strip the leading status code
         return ret
@@ -64,6 +60,12 @@ class TeachMover:
         ret = self.move(speed, j1, j2, j3, j4, j5, j6)
 
         return ret
+    
+    # Note to add speed and gripper control 
+    def move_to_xyz(self, x, y, z, lw, rw):
+        ik = InverseKinematics(x, y, z, lw, rw)
+        j1, j2, j3, j4, j5 = ik.FindStep(x, y, z, lw, rw)
+        return self.move(200, j1, j2, j3, j4, j5, 0)
     
     def close(self):
         # Close the serial connection
