@@ -43,7 +43,7 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
     time(&current_time);
 
     // Check if 5 seconds have passed since the last print
-    if (difftime(current_time, last_time) >= 0.5) {
+    // if (difftime(current_time, last_time) >= 0.5) {
       // if (frame->nHands >0) {
       //   printf("Frame %lli with %i hands.\n", (long long int)frame->info.frame_id, frame->nHands);
       //   for (uint32_t h = 0; h < frame->nHands; h++) {
@@ -65,14 +65,21 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
       // } 
       // test subject
       if (frame->nHands > 0) {
-        printf("True\n");
-        fflush(stdout);
+        for (uint32_t h = 0; h < frame->nHands; h++) {
+          LEAP_HAND* hand = &frame->pHands[h];
+          if (hand->grab_strength > 0.9) {
+            printf("Fist\n");
+          } else {
+            printf("True\n");
+          }
+          fflush(stdout);
+        }
       } else {
         printf("False\n");
         fflush(stdout);
       }
       last_time = current_time; // Update last_time to the current time after printing
-    }
+    // }
 }
 
 /** Callback for when an image is available. */

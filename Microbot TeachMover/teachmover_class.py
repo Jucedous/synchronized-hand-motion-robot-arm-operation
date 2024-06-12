@@ -13,13 +13,13 @@ class TeachMover:
         except serial.SerialException as e:
             print(f"Failed to connect on {portID}: {e}")
 
-    def send_cmd(self, cmd: str, waitTime=0.5):
+    def send_cmd(self, cmd: str, waitTime=0):
         if not cmd.endswith("\r"):
             cmd += "\r"
         self.con.write(cmd.encode())
 
         # Wait for a short time to allow the command to be processed
-        time.sleep(waitTime)
+        # time.sleep(waitTime)
 
         # Read and return any response
         response = self.con.readline().decode().strip()
