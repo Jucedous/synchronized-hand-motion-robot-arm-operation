@@ -28,7 +28,10 @@ class TeachMover:
     def move(self, speed=0, j1=0, j2=0, j3=0, j4=0, j5=0, j6=0):
         response = self.send_cmd(f"@STEP {speed}, {j1}, {j2}, {j3}, {j4+j5}, {j4-j5}, {j6+j3}")
         print("move to ", j1, j2, j3, j4, j5, j6)
-        return response
+        if (response == "1"):
+            return True
+        else:
+            return False
     
     def setZero(self):
         return self.send_cmd("@RESET")
@@ -36,6 +39,7 @@ class TeachMover:
     def readPosition(self):
         ret = self.send_cmd("@READ")
         #Strip the leading status code
+        ret = ret.split('\r')[-1]
         return ret
     
     def set_default_position(self):
@@ -43,20 +47,20 @@ class TeachMover:
         default_position = self.readPosition()
         print(default_position)
     
-    def print_default_position(self):
-        default_position = self.readPosition()
-        print(default_position)
+    def print_position(self):
+        position = self.readPosition()
+        print(position)
 
     def returnToZero(self):
         currentPos = self.readPosition().split(',')
 
-        speed = 220
+        speed = 240
         j1 = -int(currentPos[0])
         j2 = -int(currentPos[1])
         j3 = -int(currentPos[2])
         j4 = -int(currentPos[3])
         j5 = -int(currentPos[4])
-        j6 = -int(currentPos[5])
+        j6 = -int(currentPos[5])-j3
         ret = self.move(speed, j1, j2, j3, j4, j5, j6)
 
         return ret

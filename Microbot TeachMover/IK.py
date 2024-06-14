@@ -1,7 +1,6 @@
 import math
 
 class InverseKinematics:
-    #TeachMover2 Geometrical Paramaters (inches)3
     H = 7.625   #The length of Base to Shoulder
     L = 7.0     #The length of Shoulder to Elbow and Elbow to Wrist
     LL = 3.8    #The length of Wrist

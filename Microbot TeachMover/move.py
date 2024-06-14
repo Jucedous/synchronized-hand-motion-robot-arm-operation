@@ -43,15 +43,17 @@ def main_program():
         while running:
                 start_time = time.time()
                 line = output_data.get()
-                print(f"{time.time() - start_time}s: Processing command: {line}")
+                # print(f"{time.time() - start_time}s: Processing command: {line}")
                 start_time = time.time()
                 if line == 'True':
-                    teach_mover.move(200, 0, 0, 90, 0, 0, 0)
+                    teach_mover.move(200, 0, 0, 100, 0, 0, 0)
                 elif line == 'False':
-                    teach_mover.move(200, 0, 0, -90, 0, 0, 0)
+                    teach_mover.move(200, 0, 0, -100, 0, 0, 0)
                 elif line == 'Fist':
-                    running = False
-                print(f"{time.time() - start_time}s: Finished processing command: {line}")
+                    print('Fist')
+                    if (teach_mover.returnToZero() == True):
+                        running = False
+                # print(f"{time.time() - start_time}s: Finished processing command: {line}")
     except serial.SerialException:
         print("Failed to connect")
     finally:
@@ -62,7 +64,10 @@ def main_program():
         teach_mover.close()
         sys.exit()
 
+def GUI_tesing():
+    teach_mover = TeachMover('/dev/tty.usbserial-1410')
+    create_gui(teach_mover)
+
 if __name__ == "__main__":
     main_program()
-
-# create_gui(teach_mover)
+    # GUI_tesing()

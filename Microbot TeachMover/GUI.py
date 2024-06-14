@@ -22,9 +22,9 @@ def create_gui(teach_mover):
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
-    def print_to_default():
+    def print_position():
         try:
-            teach_mover.print_default_position()
+            teach_mover.print_position()
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
@@ -64,7 +64,7 @@ def create_gui(teach_mover):
     button_up = tk.Button(root, text = "Move Up", command = move_up)
     button_down = tk.Button(root, text = "Move Down", command = move_down)
     button_set_default = tk.Button(root, text = "Set to Default", command = set_to_default)
-    button_print_default = tk.Button(root, text = "Print Current Position", command = print_to_default)
+    button_print_default = tk.Button(root, text = "Print Current Position", command = print_position)
     button_move_default = tk.Button(root, text = "Move to Default", command = move_to_default)
     # button_reset = tk.Button(root, text = "Reset", command = reset)
     # button_exit = tk.Button(root, text = "Exit", command=exit_program)
