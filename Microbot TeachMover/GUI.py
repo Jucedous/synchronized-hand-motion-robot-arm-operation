@@ -1,5 +1,49 @@
 import tkinter as tk
+from tkinter import *
 from tkinter import messagebox
+
+def xyz(teach_mover):
+    root = tk.Tk()
+    root.title("XYZ Position Input")
+
+    # Create entry fields for X, Y, Z
+    x_entry = Entry(root, width=30)
+    x_entry.grid(row=0, column=1, padx=20)
+    y_entry = Entry(root, width=30)
+    y_entry.grid(row=1, column=1)
+    z_entry = Entry(root, width=30)
+    z_entry.grid(row=2, column=1)
+
+    # Create Text Labels for the entries
+    x_label = Label(root, text="X Position")
+    x_label.grid(row=0, column=0)
+    y_label = Label(root, text="Y Position")
+    y_label.grid(row=1, column=0)
+    z_label = Label(root, text="Z Position")
+    z_label.grid(row=2, column=0)
+
+    # Create a function to calculate step
+    def calculate_step():
+        try:
+            x = float(x_entry.get())
+            y = float(y_entry.get())
+            z = float(z_entry.get())
+            step = teach_mover.find_step(x, y, z,0,0)
+            print(step)
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
+    calculate_button = Button(root, text="Calculate Step", command=calculate_step)
+    calculate_button.grid(row=3, column=0, columnspan=2, pady=10)
+    
+    def print_step():
+        try:
+            teach_mover.print_step()
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
+    print_button = Button(root, text="Print Step", command=print_step)
+    print_button.grid(row=4, column=0, columnspan=2, pady=10)
+
+    root.mainloop()
 
 def create_gui(teach_mover):
 

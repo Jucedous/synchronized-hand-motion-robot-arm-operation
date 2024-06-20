@@ -36,50 +36,98 @@ static void OnDevice(const LEAP_DEVICE_INFO *props){
 //                 hand->palm.position.z);
 //   }
 // }
-
+#define FILTER_SIZE 10
 static void OnFrame(const LEAP_TRACKING_EVENT *frame){
     static time_t last_time = 0; // Static variable to store the last print time
     time_t current_time;
     time(&current_time);
-
-    // Check if 5 seconds have passed since the last print
-    // if (difftime(current_time, last_time) >= 0.5) {
-      // if (frame->nHands >0) {
-      //   printf("Frame %lli with %i hands.\n", (long long int)frame->info.frame_id, frame->nHands);
-      //   for (uint32_t h = 0; h < frame->nHands; h++) {
-      //       LEAP_HAND* hand = &frame->pHands[h];
-      //       printf("%s hand with position (%f, %f, %f).\n",
-      //               (hand->type == eLeapHandType_Left ? "left" : "right"),
-      //               hand->palm.position.x,
-      //               hand->palm.position.y,
-      //               hand->palm.position.z);
-      //       if (hand->grab_strength > 0.9) {
-      //         printf("Hand is closed\n");
-      //       }
-      //       if (hand->pinch_strength >0.7) {
-      //         printf("Pinch gesture detected\n");
-      //       }
-      //   }
-      // } else {
-      //   printf("No hands detected.\n");
-      // } 
-      // test subject
-      if (frame->nHands > 0) {
-        for (uint32_t h = 0; h < frame->nHands; h++) {
+    static float filter_x[FILTER_SIZE] = {0};
+    static float filter_y[FILTER_SIZE] = {0};
+    static float filter_z[FILTER_SIZE] = {0};
+    static int filter_index = 0;
+    static float previous_x = 0;
+    static float previous_y = 0;
+    static float previous_z = 0;
+    static int no_hand_message_printed = 0;
+    if (frame->nHands > 0) {
+      no_hand_message_printed = 0;
+      for (uint32_t h = 0; h < frame->nHands; h++) {
           LEAP_HAND* hand = &frame->pHands[h];
           if (hand->grab_strength > 0.9) {
-            printf("Fist\n");
+              printf("Fist\n");
           } else {
-            printf("True\n");
+              // Add new data to filter buffers
+              filter_x[filter_index] = hand->palm.position.x;
+              filter_y[filter_index] = hand->palm.position.y;
+              filter_z[filter_index] = hand->palm.position.z;
+
+              // Calculate filtered position
+              float filtered_x = 0;
+              float filtered_y = 0;
+              float filtered_z = 0;
+              for (int i = 0; i < FILTER_SIZE; i++) {
+                  filtered_x += filter_x[i];
+                  filtered_y += filter_y[i];
+                  filtered_z += filter_z[i];
+              }
+              filtered_x /= FILTER_SIZE;
+              filtered_y /= FILTER_SIZE;
+              filtered_z /= FILTER_SIZE;
+
+              // Calculate changes in x, y, and z coordinates
+              float change_x = filtered_x - previous_x;
+              float change_y = filtered_y - previous_y;
+              float change_z = filtered_z - previous_z;
+
+              // Output the changes
+              printf("Change in position: [%f, %f, %f]\n", change_x, change_y, change_z);
+
+              // Update the previous coordinates
+              previous_x = filtered_x;
+              previous_y = filtered_y;
+              previous_z = filtered_z;
+
+              // Update filter index
+              filter_index = (filter_index + 1) % FILTER_SIZE;
           }
           fflush(stdout);
-        }
-      } else {
-        printf("False\n");
-        fflush(stdout);
       }
-      last_time = current_time; // Update last_time to the current time after printing
+    } else if (!no_hand_message_printed) {
+      printf("No hand detected.\n");
+      fflush(stdout);
+      no_hand_message_printed = 1;
+    }
+    // // test subject
+    // static float previous_y = 0;
+    // static float cumulative_change = 0;
+    // static int no_hand_message_printed = 0;
+
+    // if (frame->nHands > 0) {
+    //   no_hand_message_printed = 0;
+    //   for (uint32_t h = 0; h < frame->nHands; h++) {
+    //     LEAP_HAND* hand = &frame->pHands[h];
+    //     if (hand->grab_strength > 0.9) {
+    //       printf("Fist\n");
+    //     } else {
+    //       float current_y = hand->palm.position.y;
+    //       cumulative_change += current_y - previous_y;
+    //       if (cumulative_change > 10) {
+    //           printf("False\n");
+    //           cumulative_change = 0;
+    //       } else if (cumulative_change < -10) {
+    //           printf("True\n");
+    //           cumulative_change = 0;
+    //       }
+    //       previous_y = current_y;  // Update the previous y-coordinate
+    //     }
+    //     fflush(stdout);
     // }
+    // } else if (!no_hand_message_printed) {
+    //   printf("No hand detected.\n");
+    //   fflush(stdout);
+    //   no_hand_message_printed = 1;
+    // }
+    last_time = current_time; // Update last_time to the current time after printing
 }
 
 /** Callback for when an image is available. */

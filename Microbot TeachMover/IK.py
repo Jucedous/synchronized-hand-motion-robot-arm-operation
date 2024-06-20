@@ -11,13 +11,6 @@ class InverseKinematics:
     E_C = 4158 / D_PI      # Elbow motor:            4158 steps in 1 rotation
     W_C = 1536 / D_PI      # Right/Left Wrist motor: 1536 steps in 1 rotation
     G_C = 2330 / D_PI      # Gripper motor:          2330 steps in 1 rotation
-    
-    def __init__(self, x, y, z, left_wrist_motor, right_wrist_motor):
-        self.x = x;
-        self.y = y;
-        self.z = z;
-        self.left_wrist_motor = left_wrist_motor
-        self.right_wrist_motor = right_wrist_motor
         
     def FindStep(self, dx, dy, dz, dlw, drw):
         
@@ -49,19 +42,20 @@ class InverseKinematics:
         
         return step1, step2, step3, step4, step5
 
-    def moveTo(self, new_x, new_y, new_z, new_left_wrist_motor, new_right_wrist_motor):
-        if not self.is_reachable(new_x, new_y, new_z, new_left_wrist_motor, new_right_wrist_motor):
-            return None
-        StepValue = self.FindStep(new_x, new_y, new_z, new_left_wrist_motor, new_right_wrist_motor)
+    # def moveTo(self, new_x, new_y, new_z, new_left_wrist_motor, new_right_wrist_motor):
+    #     if not self.is_reachable(new_x, new_y, new_z, new_left_wrist_motor, new_right_wrist_motor):
+    #         return None
+    #     StepValue = self.FindStep(new_x, new_y, new_z, new_left_wrist_motor, new_right_wrist_motor)
+    #     self.make_move(StepValue)
         
         
-        self.x = new_x
-        self.y = new_y
-        self.z = new_z
-        self.left_wrist_motor = new_left_wrist_motor
-        self.right_wrist_motor = new_right_wrist_motor
+    #     self.x = new_x
+    #     self.y = new_y
+    #     self.z = new_z
+    #     self.left_wrist_motor = new_left_wrist_motor
+    #     self.right_wrist_motor = new_right_wrist_motor
         
-        return StepValue
+    #     return StepValue
     
     def is_reachable(self, x, y, z):
         #Calculate the distance from the base to the target

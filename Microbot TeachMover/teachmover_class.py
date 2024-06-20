@@ -12,6 +12,36 @@ class TeachMover:
 
         except serial.SerialException as e:
             print(f"Failed to connect on {portID}: {e}")
+        self.ik = InverseKinematics()
+        self.gripper_coordinates = [(self.ik.L+self.ik.LL), 0, (self.ik.H+self.ik.L), 0, 0, 0]
+        self.default_step = self.ik.FindStep(self.gripper_coordinates[0], 0, self.gripper_coordinates[2], 0, 0)
+        self.updated_step = self.default_step
+
+
+    def print_step(self):
+        print(self.default_step)
+    
+    def find_step(self, new_x, new_y, new_z, new_lw, new_rw):
+        return self.ik.FindStep(new_x, new_y, new_z, new_lw, new_rw)
+    
+    def move_coordinates(self, coordinates):
+        new_step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
+        step_difference = [new - current for new, current in zip(new_step, self.updated_step)]
+        if self.move(240, *step_difference, 0):
+            self.gripper_coordinates = coordinates
+            self.updated_step = new_step
+        print(self.gripper_coordinates)
+        return self.gripper_coordinates
+    
+    def move_delta_coordinates(self, delta_coordinates):
+        # Calculate new coordinates by adding the changes to the current coordinates
+        new_coordinates = [current + delta for current, delta in zip(self.gripper_coordinates[:3], delta_coordinates)]
+        # Append the remaining coordinates (if any)
+        new_coordinates.extend(self.gripper_coordinates[3:])
+        
+        # Use the existing move_coordinates function to move to the new coordinates
+        return self.move_coordinates(new_coordinates)
+
 
     def send_cmd(self, cmd: str, waitTime=0):
         if not cmd.endswith("\r"):
@@ -32,6 +62,12 @@ class TeachMover:
             return True
         else:
             return False
+    
+    def move_to_coordinates(self, coordinates):
+        self.coordinates = coordinates
+        step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
+        ret = self.move(200, step[0], step[1], step[2], step[3], step[4], 0)
+        return ret
     
     def setZero(self):
         return self.send_cmd("@RESET")
