@@ -33,6 +33,9 @@ class SharedData:
 def main_program():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
     output_data = SharedData()
+    scaling_factor_x = 0.5
+    scaling_factor_y = 0.5
+    scaling_factor_z = 0.3
     try:
         try:
             executable_path = '/Users/zhaozilin/Documents/Github/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/ImageSample'
@@ -59,11 +62,22 @@ def main_program():
                     # teach_mover.move(200, 0, 0, 100,0,0,0)
                     match = re.search(r'Change in position: \[([\d\.-]+), ([\d\.-]+), ([\d\.-]+)\]', line)
                     if match:
-                        change_x = float(match.group(1))
-                        change_y = float(match.group(2))
-                        change_z = float(match.group(3))
-                        print(f"Change in position: [{change_x}, {change_y}, {change_z}]")
-                        # teach_mover.move_delta_coordinates(change_x, change_y, change_z)
+                        change_x = float(match.group(3))
+                        change_y = float(match.group(1))
+                        change_z = -float(match.group(2))
+                        
+                        scaled_change_x = change_x * scaling_factor_x
+                        scaled_change_y = change_y * scaling_factor_y
+                        scaled_change_z = change_z * scaling_factor_z
+                        if abs(change_x) <= 7 and abs(change_y) <= 7 and abs(change_z) <= 7:
+                            print(f"Change in position: [{change_x}, {change_y}, {change_z}]")
+                            try:
+                                teach_mover.move_delta_coordinates([scaled_change_x, scaled_change_y, scaled_change_z])
+                            except Exception as e:
+                                print(f"Failed to move: {e}")
+                                running = False
+                        else:
+                            print("Change in position ignored due to value is too big")
             # if line is not None:
             #     if line == 'True':
             #         teach_mover.move(240, 0, 0, 100, 0, 0, 0)
@@ -89,5 +103,5 @@ def GUI_tesing():
     xyz(teach_mover)
 
 if __name__ == "__main__":
-    # main_program()
-    GUI_tesing()
+    main_program()
+    # GUI_tesing()

@@ -54,7 +54,7 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
       no_hand_message_printed = 0;
       for (uint32_t h = 0; h < frame->nHands; h++) {
           LEAP_HAND* hand = &frame->pHands[h];
-          if (hand->grab_strength > 0.9) {
+          if (hand->grab_strength > 0.95) {
               printf("Fist\n");
           } else {
               // Add new data to filter buffers
@@ -80,7 +80,9 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
               float change_y = filtered_y - previous_y;
               float change_z = filtered_z - previous_z;
 
-              if (fabs(change_x) > 0.8 || fabs(change_y) > 0.8 || fabs(change_z) > 0.8) {
+              if ((fabs(change_x) > 3 && fabs(change_x) < 7) || 
+                  (fabs(change_y) > 3 && fabs(change_y) < 7) || 
+                  (fabs(change_z) > 3 && fabs(change_z) < 7)) {
                   printf("Change in position: [%f, %f, %f]\n", change_x, change_y, change_z);
               }
               // Update the previous coordinates

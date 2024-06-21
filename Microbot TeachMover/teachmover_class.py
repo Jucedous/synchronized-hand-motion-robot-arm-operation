@@ -21,7 +21,7 @@ class TeachMover:
 
 
     def print_step(self):
-        print(self.default_step)
+        print(self.updated_step)
     
     def find_step(self, new_x, new_y, new_z, new_lw, new_rw):
         return self.ik.FindStep(new_x, new_y, new_z, new_lw, new_rw)
@@ -36,18 +36,18 @@ class TeachMover:
         self.move(240, *step_difference, 0)
         self.updated_gripper_coordinates = [coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4], 0]
         self.updated_step = new_step
-        print(self.gripper_coordinates)
+        print(self.updated_gripper_coordinates)
         print(self.updated_step)
-        return self.gripper_coordinates
+        print()
     
     def move_delta_coordinates(self, delta_coordinates):
         # Calculate new coordinates by adding the changes to the current coordinates
-        new_coordinates = [current + delta for current, delta in zip(self.gripper_coordinates[:3], delta_coordinates)]
+        new_coordinates = [current + delta for current, delta in zip(self.updated_gripper_coordinates[:3], delta_coordinates)]
         # Append the remaining coordinates (if any)
-        new_coordinates.extend(self.gripper_coordinates[3:])
+        new_coordinates.extend(self.updated_gripper_coordinates[3:])
         print(new_coordinates)
         # Use the existing move_coordinates function to move to the new coordinates
-        return self.move_coordinates(new_coordinates)
+        self.move_coordinates(new_coordinates)
 
 
     def send_cmd(self, cmd: str, waitTime=0):
