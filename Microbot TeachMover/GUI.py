@@ -4,7 +4,7 @@ from tkinter import messagebox
 
 def xyz(teach_mover):
     root = tk.Tk()
-    root.title("XYZ Position Input")
+    root.title("Delta XYZ Position Input")
 
     # Create entry fields for X, Y, Z
     x_entry = Entry(root, width=30)
@@ -15,25 +15,25 @@ def xyz(teach_mover):
     z_entry.grid(row=2, column=1)
 
     # Create Text Labels for the entries
-    x_label = Label(root, text="X Position")
+    x_label = Label(root, text="delta X")
     x_label.grid(row=0, column=0)
-    y_label = Label(root, text="Y Position")
+    y_label = Label(root, text="delta Y")
     y_label.grid(row=1, column=0)
-    z_label = Label(root, text="Z Position")
+    z_label = Label(root, text="delta Z")
     z_label.grid(row=2, column=0)
 
     # Create a function to calculate step
-    def calculate_step():
+    def move_by_delta():
         try:
-            x = float(x_entry.get())
-            y = float(y_entry.get())
-            z = float(z_entry.get())
-            step = teach_mover.find_step(x, y, z,0,0)
-            print(step)
+            x = float(x_entry.get()) if x_entry.get() else 0.0
+            y = float(y_entry.get()) if y_entry.get() else 0.0
+            z = float(z_entry.get()) if z_entry.get() else 0.0
+            teach_mover.move_delta_coordinates([x,y,z])
+            messagebox.showinfo("Success", "Robot moved successfully!")
         except Exception as e:
             messagebox.showerror("Error", str(e))
-    calculate_button = Button(root, text="Calculate Step", command=calculate_step)
-    calculate_button.grid(row=3, column=0, columnspan=2, pady=10)
+    move_button = Button(root, text="Calculate Step", command=move_by_delta)
+    move_button.grid(row=3, column=0, columnspan=2, pady=10)
     
     def print_step():
         try:
@@ -42,7 +42,16 @@ def xyz(teach_mover):
             messagebox.showerror("Error", str(e))
     print_button = Button(root, text="Print Step", command=print_step)
     print_button.grid(row=4, column=0, columnspan=2, pady=10)
+    
+    def move_to_default():
+        try:
+            teach_mover.returnToZero()
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
 
+    move_default_button = Button(root, text="move to default", command=move_to_default)
+    move_default_button.grid(row=5, column=0, columnspan=2, pady=10)
+    
     root.mainloop()
 
 def create_gui(teach_mover):

@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 #include "LeapC.h"
 #include "ExampleConnection.h"
 
@@ -79,9 +80,9 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
               float change_y = filtered_y - previous_y;
               float change_z = filtered_z - previous_z;
 
-              // Output the changes
-              printf("Change in position: [%f, %f, %f]\n", change_x, change_y, change_z);
-
+              if (fabs(change_x) > 0.8 || fabs(change_y) > 0.8 || fabs(change_z) > 0.8) {
+                  printf("Change in position: [%f, %f, %f]\n", change_x, change_y, change_z);
+              }
               // Update the previous coordinates
               previous_x = filtered_x;
               previous_y = filtered_y;

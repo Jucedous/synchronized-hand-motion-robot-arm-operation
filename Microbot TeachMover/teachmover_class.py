@@ -1,4 +1,5 @@
 import serial
+import copy
 import time
 from IK import InverseKinematics
 
@@ -14,7 +15,8 @@ class TeachMover:
             print(f"Failed to connect on {portID}: {e}")
         self.ik = InverseKinematics()
         self.gripper_coordinates = [(self.ik.L+self.ik.LL), 0, (self.ik.H+self.ik.L), 0, 0, 0]
-        self.default_step = self.ik.FindStep(self.gripper_coordinates[0], 0, self.gripper_coordinates[2], 0, 0)
+        self.updated_gripper_coordinates = copy.deepcopy(self.gripper_coordinates)
+        self.default_step = self.ik.FindStep(*self.gripper_coordinates[:5])
         self.updated_step = self.default_step
 
 
@@ -24,13 +26,18 @@ class TeachMover:
     def find_step(self, new_x, new_y, new_z, new_lw, new_rw):
         return self.ik.FindStep(new_x, new_y, new_z, new_lw, new_rw)
     
+    def update_coordinates(self, new_coordinates):
+        # This method allows updating the coordinates safely without affecting the original
+        self.updated_gripper_coordinates = new_coordinates
+
     def move_coordinates(self, coordinates):
         new_step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
         step_difference = [new - current for new, current in zip(new_step, self.updated_step)]
-        if self.move(240, *step_difference, 0):
-            self.gripper_coordinates = coordinates
-            self.updated_step = new_step
+        self.move(240, *step_difference, 0)
+        self.updated_gripper_coordinates = [coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4], 0]
+        self.updated_step = new_step
         print(self.gripper_coordinates)
+        print(self.updated_step)
         return self.gripper_coordinates
     
     def move_delta_coordinates(self, delta_coordinates):
@@ -38,7 +45,7 @@ class TeachMover:
         new_coordinates = [current + delta for current, delta in zip(self.gripper_coordinates[:3], delta_coordinates)]
         # Append the remaining coordinates (if any)
         new_coordinates.extend(self.gripper_coordinates[3:])
-        
+        print(new_coordinates)
         # Use the existing move_coordinates function to move to the new coordinates
         return self.move_coordinates(new_coordinates)
 
@@ -87,7 +94,13 @@ class TeachMover:
         position = self.readPosition()
         print(position)
 
+    def reset_to_default(self):
+        self.updated_gripper_coordinates = copy.deepcopy(self.gripper_coordinates)
+        self.updated_step = self.default_step
+    
     def returnToZero(self):
+        self.reset_to_default()
+        
         currentPos = self.readPosition().split(',')
 
         speed = 240
@@ -98,6 +111,8 @@ class TeachMover:
         j5 = -int(currentPos[4])
         j6 = -int(currentPos[5])-j3
         ret = self.move(speed, j1, j2, j3, j4, j5, j6)
+        
+        
 
         return ret
     

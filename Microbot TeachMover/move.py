@@ -56,13 +56,14 @@ def main_program():
                     if (teach_mover.returnToZero() == True):
                         running = False
                 else:
+                    # teach_mover.move(200, 0, 0, 100,0,0,0)
                     match = re.search(r'Change in position: \[([\d\.-]+), ([\d\.-]+), ([\d\.-]+)\]', line)
                     if match:
                         change_x = float(match.group(1))
                         change_y = float(match.group(2))
                         change_z = float(match.group(3))
                         print(f"Change in position: [{change_x}, {change_y}, {change_z}]")
-                        teach_mover.move_delta_coordinates(change_x, change_y, change_z)
+                        # teach_mover.move_delta_coordinates(change_x, change_y, change_z)
             # if line is not None:
             #     if line == 'True':
             #         teach_mover.move(240, 0, 0, 100, 0, 0, 0)
@@ -88,5 +89,5 @@ def GUI_tesing():
     xyz(teach_mover)
 
 if __name__ == "__main__":
-    main_program()
-    # GUI_tesing()
+    # main_program()
+    GUI_tesing()
