@@ -28,12 +28,23 @@ def xyz(teach_mover):
             x = float(x_entry.get()) if x_entry.get() else 0.0
             y = float(y_entry.get()) if y_entry.get() else 0.0
             z = float(z_entry.get()) if z_entry.get() else 0.0
-            teach_mover.move_delta_coordinates([x,y,z])
+            teach_mover.move_delta_coordinates([x,y,z],False)
             messagebox.showinfo("Success", "Robot moved successfully!")
         except Exception as e:
             messagebox.showerror("Error", str(e))
     move_button = Button(root, text="Calculate Step", command=move_by_delta)
     move_button.grid(row=3, column=0, columnspan=2, pady=10)
+    
+    def move_test():
+        try:
+            x = float(x_entry.get()) if x_entry.get() else 0.0
+            y = float(y_entry.get()) if y_entry.get() else 0.0
+            z = float(z_entry.get()) if z_entry.get() else 0.0
+            teach_mover.move_delta_coordinates([x,y,z],True)
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
+    print_button = Button(root, text="Move Test", command=move_test)
+    print_button.grid(row=4, column=0, columnspan=2, pady=10)
     
     def print_step():
         try:
@@ -41,7 +52,7 @@ def xyz(teach_mover):
         except Exception as e:
             messagebox.showerror("Error", str(e))
     print_button = Button(root, text="Print Step", command=print_step)
-    print_button.grid(row=4, column=0, columnspan=2, pady=10)
+    print_button.grid(row=5, column=0, columnspan=2, pady=10)
     
     def move_to_default():
         try:
@@ -50,7 +61,7 @@ def xyz(teach_mover):
             messagebox.showerror("Error", str(e))
 
     move_default_button = Button(root, text="move to default", command=move_to_default)
-    move_default_button.grid(row=5, column=0, columnspan=2, pady=10)
+    move_default_button.grid(row=6, column=0, columnspan=2, pady=10)
     
     root.mainloop()
 

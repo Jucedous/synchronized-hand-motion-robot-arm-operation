@@ -12,26 +12,29 @@ class InverseKinematics:
     W_C = 1536 / D_PI      # Right/Left Wrist motor: 1536 steps in 1 rotation
     G_C = 2330 / D_PI      # Gripper motor:          2330 steps in 1 rotation
         
-    def FindStep(self, dx, dy, dz, dlw, drw):
+    def FindStep(self, x, y, z, dlw, drw):
+        
+        RR = math.sqrt(x**2 + y**2)  # intermediate value
+        r0 = RR
+        z0 = z - self.H
+
+        # Get intermediate angles (radian)
+        alpha = math.acos(math.sqrt((r0**2 + z0**2) / (4 * self.L**2)))
+        beta = math.atan2(z0, r0)
         
         #Calculate the angle of the base motor
-        theta1 = math.atan2(dy, dx)
-        
-        #Calculate the angle of the shoulder motor
-        D = math.sqrt(dx**2 + dy**2) - self.L
-        E = dz - self.H
-        F = math.sqrt(D**2 + E**2)
-        G = math.sqrt(F**2 - self.LL**2)
-        theta2 = math.atan2(E, D) + math.acos(self.LL / F)
-        
-        #Calculate the angle of the elbow motor
-        theta3 = math.acos((self.L**2 + self.L**2 - G**2) / (2 * self.L * self.L))
-        
+        theta1 = math.atan2(y, x)
+        theta2 = (alpha + beta)
+        theta3 = (beta - alpha)
         #Calculate the angle of the right/left wrist motor
         theta4 = (dlw + drw) / 2
         
         #Calculate the angle of the gripper motor
         theta5 = (dlw - drw) / 2
+        # theta1_deg = math.degrees(theta1)
+        # theta2_deg = math.degrees(theta2)
+        # theta3_deg = math.degrees(theta3)
+        # print(theta1_deg, theta2_deg, theta3_deg)
         
         #Convert the angles to steps
         step1 = int(theta1 * self.B_C)

@@ -39,9 +39,6 @@ static void OnDevice(const LEAP_DEVICE_INFO *props){
 // }
 #define FILTER_SIZE 10
 static void OnFrame(const LEAP_TRACKING_EVENT *frame){
-    static time_t last_time = 0; // Static variable to store the last print time
-    time_t current_time;
-    time(&current_time);
     static float filter_x[FILTER_SIZE] = {0};
     static float filter_y[FILTER_SIZE] = {0};
     static float filter_z[FILTER_SIZE] = {0};
@@ -49,6 +46,8 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
     static float previous_x = 0;
     static float previous_y = 0;
     static float previous_z = 0;
+    static float origin_x = 0, origin_y = 0, origin_z = 0;
+    static int set_origin = 0;
     static int no_hand_message_printed = 0;
     if (frame->nHands > 0) {
       no_hand_message_printed = 0;
@@ -56,11 +55,25 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
           LEAP_HAND* hand = &frame->pHands[h];
           if (hand->grab_strength > 0.95) {
               printf("Fist\n");
+              origin_x = hand->palm.position.x;
+              origin_y = hand->palm.position.y;
+              origin_z = hand->palm.position.z;
+              set_origin = 1;
+              for (int i = 0; i < FILTER_SIZE; i++) {
+                  filter_x[i] = 0;
+                  filter_y[i] = 0;
+                  filter_z[i] = 0;
+              }
+              filter_index = 0; // Reset filter_index if necessary
+          } else if (set_origin) {
+              filter_x[filter_index] = hand->palm.position.x - origin_x;
+              filter_y[filter_index] = hand->palm.position.y - origin_y;
+              filter_z[filter_index] = hand->palm.position.z - origin_z;
           } else {
-              // Add new data to filter buffers
               filter_x[filter_index] = hand->palm.position.x;
               filter_y[filter_index] = hand->palm.position.y;
               filter_z[filter_index] = hand->palm.position.z;
+          }
 
               // Calculate filtered position
               float filtered_x = 0;
@@ -80,11 +93,12 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
               float change_y = filtered_y - previous_y;
               float change_z = filtered_z - previous_z;
 
-              if ((fabs(change_x) > 3 && fabs(change_x) < 7) || 
-                  (fabs(change_y) > 3 && fabs(change_y) < 7) || 
-                  (fabs(change_z) > 3 && fabs(change_z) < 7)) {
-                  printf("Change in position: [%f, %f, %f]\n", change_x, change_y, change_z);
+              if ((fabs(change_x) > 1 && fabs(change_x) < 7) || 
+                  (fabs(change_y) > 1 && fabs(change_y) < 7) || 
+                  (fabs(change_z) > 1 && fabs(change_z) < 7)) {
+                  printf("x,y,z position: [%f, %f, %f]\n", filtered_x, filtered_y, filtered_z);
               }
+              // printf("x,y,z position: [%f, %f, %f]\n", filtered_x, filtered_y, filtered_z);
               // Update the previous coordinates
               previous_x = filtered_x;
               previous_y = filtered_y;
@@ -92,7 +106,6 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
 
               // Update filter index
               filter_index = (filter_index + 1) % FILTER_SIZE;
-          }
           fflush(stdout);
       }
     } else if (!no_hand_message_printed) {
@@ -130,7 +143,6 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
     //   fflush(stdout);
     //   no_hand_message_printed = 1;
     // }
-    last_time = current_time; // Update last_time to the current time after printing
 }
 
 /** Callback for when an image is available. */

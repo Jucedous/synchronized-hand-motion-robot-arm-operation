@@ -14,9 +14,9 @@ class TeachMover:
         except serial.SerialException as e:
             print(f"Failed to connect on {portID}: {e}")
         self.ik = InverseKinematics()
-        self.gripper_coordinates = [(self.ik.L+self.ik.LL), 0, (self.ik.H+self.ik.L), 0, 0, 0]
+        self.gripper_coordinates = [(self.ik.L), 0, (self.ik.H+self.ik.L), 0, 0, 0]
         self.updated_gripper_coordinates = copy.deepcopy(self.gripper_coordinates)
-        self.default_step = self.ik.FindStep(*self.gripper_coordinates[:5])
+        self.default_step = self.ik.FindStep(*self.updated_gripper_coordinates[:5])
         self.updated_step = self.default_step
 
 
@@ -33,21 +33,33 @@ class TeachMover:
     def move_coordinates(self, coordinates):
         new_step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
         step_difference = [new - current for new, current in zip(new_step, self.updated_step)]
-        self.move(240, *step_difference, 0)
+        self.move_ik(240, *step_difference, 0)
+        self.updated_gripper_coordinates = [coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4], 0]
+        self.updated_step = new_step
+        print(self.updated_gripper_coordinates)
+        print(self.updated_step)
+        print()
+        
+    def test_move_coordinates(self, coordinates):
+        new_step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
+        step_difference = [new - current for new, current in zip(new_step, self.updated_step)]
         self.updated_gripper_coordinates = [coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4], 0]
         self.updated_step = new_step
         print(self.updated_gripper_coordinates)
         print(self.updated_step)
         print()
     
-    def move_delta_coordinates(self, delta_coordinates):
+    def move_delta_coordinates(self, delta_coordinates, test_switch):
         # Calculate new coordinates by adding the changes to the current coordinates
         new_coordinates = [current + delta for current, delta in zip(self.updated_gripper_coordinates[:3], delta_coordinates)]
         # Append the remaining coordinates (if any)
         new_coordinates.extend(self.updated_gripper_coordinates[3:])
-        print(new_coordinates)
+        # print(new_coordinates)
         # Use the existing move_coordinates function to move to the new coordinates
-        self.move_coordinates(new_coordinates)
+        if test_switch == False:
+            self.move_coordinates(new_coordinates)
+        elif test_switch == True:
+            self.test_move_coordinates(new_coordinates)
 
 
     def send_cmd(self, cmd: str, waitTime=0):
@@ -61,7 +73,18 @@ class TeachMover:
         # Read and return any response
         response = self.con.readline().decode().strip()
         return response
-
+    
+    # Direction correctness on motor angles
+    def move_ik(self, speed=0, j1=0, j2=0, j3=0, j4=0, j5=0, j6=0):
+        j_2 = -j2
+        j_3 = -j3
+        response = self.send_cmd(f"@STEP {speed}, {j1}, {j_2}, {j_3}, {j4+j5}, {j4-j5}, {j6+j_3}")
+        print("move to ", j1, j_2, j_3, j4, j5, j6)
+        if (response == "1"):
+            return True
+        else:
+            return False
+    
     def move(self, speed=0, j1=0, j2=0, j3=0, j4=0, j5=0, j6=0):
         response = self.send_cmd(f"@STEP {speed}, {j1}, {j2}, {j3}, {j4+j5}, {j4-j5}, {j6+j3}")
         print("move to ", j1, j2, j3, j4, j5, j6)
