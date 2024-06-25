@@ -14,6 +14,10 @@
 #include "LeapC.h"
 #include "ExampleConnection.h"
 
+time_t last_fist_time = 0;
+int fist_detected = 0;
+const int WAIT_SECONDS = 1;
+
 /** Callback for when the connection opens. */
 static void OnConnect(void){
   printf("Connected.\n");
@@ -49,15 +53,60 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
     static float origin_x = 0, origin_y = 0, origin_z = 0;
     static int set_origin = 0;
     static int no_hand_message_printed = 0;
+    time_t now;
+    time(&now);
+
+    static int previous_fingers_touching = 0;
+
     if (frame->nHands > 0) {
+      // for (uint32_t h = 0; h < frame->nHands; h++) {
+      //   LEAP_HAND* hand = &frame->pHands[h];
+      //   // Print XYZ location of the hand
+      //   printf("Hand Position - X: %f, Y: %f, Z: %f\n", hand->palm.position.x, hand->palm.position.y, hand->palm.position.z);
+
+      //   // Recognize and print message for Fist gesture
+      //   if (hand->grab_strength > 0.95) {
+      //       printf("Fist\n");
+      //   }
+      // }
       no_hand_message_printed = 0;
       for (uint32_t h = 0; h < frame->nHands; h++) {
           LEAP_HAND* hand = &frame->pHands[h];
+          float palm_x = hand->palm.position.x;
+          float palm_y = hand->palm.position.y;
+          float palm_z = hand->palm.position.z;
+
+          float thumb_tip_x = hand->digits[0].distal.next_joint.x;
+          float thumb_tip_y = hand->digits[0].distal.next_joint.y;
+          float thumb_tip_z = hand->digits[0].distal.next_joint.z;
+          float middle_tip_x = hand->digits[2].distal.next_joint.x;
+          float middle_tip_y = hand->digits[2].distal.next_joint.y;
+          float middle_tip_z = hand->digits[2].distal.next_joint.z;
+
+          // Calculate the distance from thumb tip and middle tip to the palm
+          float thumb_to_palm_distance = sqrt(pow(thumb_tip_x - palm_x, 2) + pow(thumb_tip_y - palm_y, 2) + pow(thumb_tip_z - palm_z, 2));
+          float middle_to_palm_distance = sqrt(pow(middle_tip_x - palm_x, 2) + pow(middle_tip_y - palm_y, 2) + pow(middle_tip_z - palm_z, 2));
+
+          // Define a threshold for "obvious distance" from fingertip to palm
+          float distance_threshold = 50; // Adjust this value based on your application's needs
+
+          // Check if both fingertips are an obvious distance from the palm
+          int fingertips_extended = (thumb_to_palm_distance > distance_threshold) && (middle_to_palm_distance > distance_threshold);
+          float distance = sqrt(pow(thumb_tip_x - middle_tip_x, 2) + pow(thumb_tip_y - middle_tip_y, 2) + pow(thumb_tip_z - middle_tip_z, 2));
+          int fingers_touching = (distance < 30) && fingertips_extended;
+
           if (hand->grab_strength > 0.95) {
-              printf("Fist\n");
-              origin_x = hand->palm.position.x;
-              origin_y = hand->palm.position.y;
-              origin_z = hand->palm.position.z;
+              if (!fist_detected) {
+                fist_detected = 1;
+                last_fist_time = now;
+                printf("Fist\n");
+              } else if (difftime(now, last_fist_time) > WAIT_SECONDS) {
+                printf("Close\n");
+                fist_detected = 0;
+              }
+              origin_x = palm_x;
+              origin_y = palm_y;
+              origin_z = palm_z;
               set_origin = 1;
               for (int i = 0; i < FILTER_SIZE; i++) {
                   filter_x[i] = 0;
@@ -65,14 +114,12 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
                   filter_z[i] = 0;
               }
               filter_index = 0; // Reset filter_index if necessary
-          } else if (set_origin) {
+          } else {
+            fist_detected = 0;
+            if (set_origin && difftime(now, last_fist_time) > WAIT_SECONDS)
               filter_x[filter_index] = hand->palm.position.x - origin_x;
               filter_y[filter_index] = hand->palm.position.y - origin_y;
               filter_z[filter_index] = hand->palm.position.z - origin_z;
-          } else {
-              filter_x[filter_index] = hand->palm.position.x;
-              filter_y[filter_index] = hand->palm.position.y;
-              filter_z[filter_index] = hand->palm.position.z;
           }
 
               // Calculate filtered position
@@ -97,6 +144,12 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
                   (fabs(change_y) > 1 && fabs(change_y) < 7) || 
                   (fabs(change_z) > 1 && fabs(change_z) < 7)) {
                   printf("x,y,z position: [%f, %f, %f]\n", filtered_x, filtered_y, filtered_z);
+              }
+              if (fingers_touching != previous_fingers_touching) {
+                  // If there's a change, print the new state
+                  printf("Touching: %s\n", fingers_touching ? "True" : "False");
+                  // Update the previous state of touch
+                  previous_fingers_touching = fingers_touching;
               }
               // printf("x,y,z position: [%f, %f, %f]\n", filtered_x, filtered_y, filtered_z);
               // Update the previous coordinates

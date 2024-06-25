@@ -33,11 +33,12 @@ class TeachMover:
     def move_coordinates(self, coordinates):
         new_step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
         step_difference = [new - current for new, current in zip(new_step, self.updated_step)]
+        print(" ")
         self.move_ik(240, *step_difference, 0)
         self.updated_gripper_coordinates = [coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4], 0]
         self.updated_step = new_step
         print(self.updated_gripper_coordinates)
-        print(self.updated_step)
+        # print(self.updated_step)
         print()
         
     def test_move_coordinates(self, coordinates):
@@ -79,7 +80,7 @@ class TeachMover:
         j_2 = -j2
         j_3 = -j3
         response = self.send_cmd(f"@STEP {speed}, {j1}, {j_2}, {j_3}, {j4+j5}, {j4-j5}, {j6+j_3}")
-        print("move to ", j1, j_2, j_3, j4, j5, j6)
+        # print("move to ", j1, j_2, j_3, j4, j5, j6)
         if (response == "1"):
             return True
         else:
@@ -93,11 +94,8 @@ class TeachMover:
         else:
             return False
     
-    def move_to_coordinates(self, coordinates):
-        self.coordinates = coordinates
-        step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
-        ret = self.move(200, step[0], step[1], step[2], step[3], step[4], 0)
-        return ret
+    def gripper_close(self):
+        return self.send_cmd(f"@CLOSE")
     
     def setZero(self):
         return self.send_cmd("@RESET")

@@ -2,6 +2,21 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 
+def gripper(teach_mover):
+    root = tk.Tk()
+    root.title("Gripper Control")
+    
+    def gripper_close():
+        try:
+            teach_mover.gripper_close()
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
+    gripper_close_button = Button(root, text="close gripper", command=gripper_close)
+    gripper_close_button.grid(row=0, column=0, columnspan=2, pady=10)
+    
+    root.mainloop()
+    
+
 def xyz(teach_mover):
     root = tk.Tk()
     root.title("Delta XYZ Position Input")

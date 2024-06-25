@@ -34,12 +34,11 @@ class SharedData:
 def main_program():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
     output_data = SharedData()
-    scale_factor = 0.05
-    step_factor = 0.5
-    scaling_factor_x = 0.3
-    scaling_factor_y = 0.3
-    scaling_factor_z = 0.3
-    threshold = 1
+    step_factor = 1
+    scaling_factor_x = 0.04
+    scaling_factor_y = 0.035
+    scaling_factor_z = 0.02
+    threshold = 0.5
     try:
         try:
             executable_path = '/Users/zhaozilin/Documents/Github/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/ImageSample'
@@ -58,36 +57,52 @@ def main_program():
         while running:
             line = output_data.get()
             if line is not None:
-                if line == 'Fist':
+                if line == 'Close':
                     print('Fist')
                     if (teach_mover.returnToZero() == True):
                         running = False
+                elif "Touching:" in line:
+                    touch_state = "True" in line
+                    if touch_state:
+                        print("Close Gripper")
+                        teach_mover.move(240, 0, 0, 0, 0, 0, -450)
+                    elif not touch_state:
+                        print("Open Gripper")
+                        teach_mover.move(240, 0, 0, 0, 0, 0, 450)
                 else:
                     match = re.search(r'x,y,z position: \[([\d\.-]+), ([\d\.-]+), ([\d\.-]+)\]', line)
                     if match:
-                        target_x = float(match.group(3)) * scale_factor
-                        target_y = float(match.group(1)) * scale_factor
-                        target_z = float(match.group(2)) * scale_factor
+                        hand_x = -(float(match.group(3)) * scaling_factor_x)
+                        hand_y = -(float(match.group(1)) * scaling_factor_y)
+                        hand_z = float(match.group(2)) * scaling_factor_z
                         
-                        robot_x = teach_mover.updated_gripper_coordinates[0]
-                        robot_y = teach_mover.updated_gripper_coordinates[1]
-                        robot_z = teach_mover.updated_gripper_coordinates[2]
+                        robot_x = teach_mover.gripper_coordinates[0]
+                        robot_y = teach_mover.gripper_coordinates[1]
+                        robot_z = teach_mover.gripper_coordinates[2]
+                        # print(f"Robot: {robot_x}, {robot_y}, {robot_z}")
                         
-                        delta_x = target_x - robot_x
-                        delta_y = target_y - robot_y
-                        delta_z = target_z - robot_z
+                        new_x = hand_x + robot_x
+                        new_y = hand_y + robot_y
+                        new_z = hand_z + robot_z
+                        print(f"New: {new_x}, {new_y}, {new_z}")
                         
-                        magnitude = math.sqrt(delta_x**2 + delta_y**2 + delta_z**2)
+                        new_hand_x = hand_x * step_factor
+                        new_hand_y = hand_y * step_factor
+                        new_hand_z = hand_z * step_factor
+                        # print(f"Moing to: {new_hand_x}, {new_hand_y}, {new_hand_z}")
+                        
+                        # print(f"Moing to: {new_hand_x}, {new_hand_y}, {new_hand_z}")
+                        
+                        magnitude = math.sqrt(hand_x**2 + hand_y**2 + hand_z**2)
                         
                         if (magnitude > threshold):
-                            move_x = delta_x * scale_factor + robot_x
-                            move_y = delta_y * scale_factor + robot_y
-                            move_z = delta_z * scale_factor + robot_z
                             try:
-                                teach_mover.move_delta_coordinates([move_x, move_y, move_z], False)
+                                # teach_mover.move_delta_coordinates([new_hand_x,new_hand_y,new_hand_z], False)
+                                teach_mover.move_coordinates([new_x, new_y, new_z, 0, 0])
                             except Exception as e:
                                 print(f"Failed to move: {e}")
                                 running = False
+                    # time.sleep(1)
             # if line is not None:
             #     if line == 'True':
             #         teach_mover.move(240, 0, 0, 100, 0, 0, 0)
@@ -99,7 +114,12 @@ def main_program():
             #             running = False
     except serial.SerialException:
         print("Failed to connect")
+    except KeyboardInterrupt:
+        print("Keyboard Interrupt")
     finally:
+        # if teach_mover.returnToZero():
+        #     print("return to zero success, closing...")
+        # else:
         print("Closing...")
         process.kill()
         process.wait()
@@ -109,9 +129,10 @@ def main_program():
 
 def GUI_tesing():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
-    # create_gui(teach_mover)
-    xyz(teach_mover)
+    create_gui(teach_mover)
+    # xyz(teach_mover)
+    # gripper(teach_mover)
 
 if __name__ == "__main__":
-    # main_program()
-    GUI_tesing()
+    main_program()
+    # GUI_tesing()
