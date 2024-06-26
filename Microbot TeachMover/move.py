@@ -35,10 +35,10 @@ def main_program():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
     output_data = SharedData()
     step_factor = 1
-    scaling_factor_x = 0.04
-    scaling_factor_y = 0.035
-    scaling_factor_z = 0.02
-    threshold = 0.5
+    scaling_factor_x = 0.035
+    scaling_factor_y = 0.03
+    scaling_factor_z = 0.025
+    threshold = 0.4
     try:
         try:
             executable_path = '/Users/zhaozilin/Documents/Github/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/ImageSample'

@@ -79,21 +79,29 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
           float thumb_tip_x = hand->digits[0].distal.next_joint.x;
           float thumb_tip_y = hand->digits[0].distal.next_joint.y;
           float thumb_tip_z = hand->digits[0].distal.next_joint.z;
-          float middle_tip_x = hand->digits[2].distal.next_joint.x;
-          float middle_tip_y = hand->digits[2].distal.next_joint.y;
-          float middle_tip_z = hand->digits[2].distal.next_joint.z;
+          float index_tip_x = hand->digits[1].distal.next_joint.x;
+          float index_tip_y = hand->digits[1].distal.next_joint.y;
+          float index_tip_z = hand->digits[1].distal.next_joint.z;
 
-          // Calculate the distance from thumb tip and middle tip to the palm
+          // Calculate the distance from thumb tip and index tip to the palm
           float thumb_to_palm_distance = sqrt(pow(thumb_tip_x - palm_x, 2) + pow(thumb_tip_y - palm_y, 2) + pow(thumb_tip_z - palm_z, 2));
-          float middle_to_palm_distance = sqrt(pow(middle_tip_x - palm_x, 2) + pow(middle_tip_y - palm_y, 2) + pow(middle_tip_z - palm_z, 2));
-
+          float index_to_palm_distance = sqrt(pow(index_tip_x - palm_x, 2) + pow(index_tip_y - palm_y, 2) + pow(index_tip_z - palm_z, 2));
+          // printf("Thumb to palm distance: %f\n", thumb_to_palm_distance);
+          // printf("Index to palm distance: %f\n", index_to_palm_distance);
           // Define a threshold for "obvious distance" from fingertip to palm
-          float distance_threshold = 50; // Adjust this value based on your application's needs
+          float distance_threshold = 70; // Adjust this value based on your application's needs
 
-          // Check if both fingertips are an obvious distance from the palm
-          int fingertips_extended = (thumb_to_palm_distance > distance_threshold) && (middle_to_palm_distance > distance_threshold);
-          float distance = sqrt(pow(thumb_tip_x - middle_tip_x, 2) + pow(thumb_tip_y - middle_tip_y, 2) + pow(thumb_tip_z - middle_tip_z, 2));
-          int fingers_touching = (distance < 30) && fingertips_extended;
+          // Check if thumb and index fingertips are an obvious distance from the palm
+          int fingertips_extended = (thumb_to_palm_distance < distance_threshold) && (index_to_palm_distance < distance_threshold);
+          // printf("%d\n", fingertips_extended);
+
+          // Calculate distance between thumb and index fingertips
+          float thumb_index_distance = sqrt(pow(thumb_tip_x - index_tip_x, 2) + pow(thumb_tip_y - index_tip_y, 2) + pow(thumb_tip_z - index_tip_z, 2));
+          // printf("%f\n", thumb_index_distance);
+          // printf((thumb_index_distance < 20) ? "Touching\n" : "Not touching\n");
+          // printf((fingertips_extended) ? "Fingertips extended\n" : "Fingertips not extended\n");
+          // Check if thumb and index fingers are touching each other
+          int fingers_touching = (thumb_index_distance < 30) && fingertips_extended;
 
           if (hand->grab_strength > 0.95) {
               if (!fist_detected) {
@@ -145,7 +153,7 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
                   (fabs(change_z) > 1 && fabs(change_z) < 7)) {
                   printf("x,y,z position: [%f, %f, %f]\n", filtered_x, filtered_y, filtered_z);
               }
-              if (fingers_touching != previous_fingers_touching) {
+              if (fingers_touching != previous_fingers_touching && hand->grab_strength < 0.95) {
                   // If there's a change, print the new state
                   printf("Touching: %s\n", fingers_touching ? "True" : "False");
                   // Update the previous state of touch
