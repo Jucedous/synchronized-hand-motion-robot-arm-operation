@@ -34,7 +34,6 @@ class SharedData:
 def main_program():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
     output_data = SharedData()
-    step_factor = 1
     scaling_factor_x = 0.035
     scaling_factor_y = 0.03
     scaling_factor_z = 0.025
@@ -48,7 +47,6 @@ def main_program():
             return
         def read_buffer(proc, shared_data):
             for line in iter(proc.stdout.readline, ''):
-                # print("Debug: Line read from stdout:", line.strip())  # Debugging output
                 shared_data.update(line.strip())
 
         output_thread = threading.Thread(target=read_buffer, args=(process, output_data))
@@ -79,47 +77,25 @@ def main_program():
                         robot_x = teach_mover.gripper_coordinates[0]
                         robot_y = teach_mover.gripper_coordinates[1]
                         robot_z = teach_mover.gripper_coordinates[2]
-                        # print(f"Robot: {robot_x}, {robot_y}, {robot_z}")
                         
                         new_x = hand_x + robot_x
                         new_y = hand_y + robot_y
                         new_z = hand_z + robot_z
                         print(f"New: {new_x}, {new_y}, {new_z}")
                         
-                        new_hand_x = hand_x * step_factor
-                        new_hand_y = hand_y * step_factor
-                        new_hand_z = hand_z * step_factor
-                        # print(f"Moing to: {new_hand_x}, {new_hand_y}, {new_hand_z}")
-                        
-                        # print(f"Moing to: {new_hand_x}, {new_hand_y}, {new_hand_z}")
-                        
                         magnitude = math.sqrt(hand_x**2 + hand_y**2 + hand_z**2)
                         
                         if (magnitude > threshold):
                             try:
-                                # teach_mover.move_delta_coordinates([new_hand_x,new_hand_y,new_hand_z], False)
                                 teach_mover.move_coordinates([new_x, new_y, new_z, 0, 0])
                             except Exception as e:
                                 print(f"Failed to move: {e}")
                                 running = False
-                    # time.sleep(1)
-            # if line is not None:
-            #     if line == 'True':
-            #         teach_mover.move(240, 0, 0, 100, 0, 0, 0)
-            #     elif line == 'False':
-            #         teach_mover.move(240, 0, 0, -100, 0, 0, 0)
-            #     elif line == 'Fist':
-            #         print('Fist')
-            #         if (teach_mover.returnToZero() == True):
-            #             running = False
     except serial.SerialException:
         print("Failed to connect")
     except KeyboardInterrupt:
         print("Keyboard Interrupt")
     finally:
-        # if teach_mover.returnToZero():
-        #     print("return to zero success, closing...")
-        # else:
         print("Closing...")
         process.kill()
         process.wait()
