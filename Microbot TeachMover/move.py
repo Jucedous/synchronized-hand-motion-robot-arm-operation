@@ -30,14 +30,34 @@ class SharedData:
             else:
                 self.read = True
                 return self.data
+            
+def test_program():
+    teach_mover = TeachMover('/dev/tty.usbserial-1410')
+    while True:
+        try:
+            # teach_mover.move(240, 0, 0, 10, 0, 0, 0)
+            # teach_mover.move(200, 0, 0, 100, 0, 0, 0)
+            # teach_mover.move(200, 0, 0, 100, 0, 0, 0)
+            # teach_mover.move(240, 0, 0, 10, 0, 0, 0)
+            # teach_mover.move(240, 0, 0, -10, 0, 0, 0)
+            # teach_mover.move(200, 0, 0, -100, 0, 0, 0)
+            # teach_mover.move(200, 0, 0, -100, 0, 0, 0)
+            # teach_mover.move(240, 0, 0, -10, 0, 0, 0)
+            teach_mover.move(240, 0, 0, -400, 0, 0, 0)
+            teach_mover.move(240, 0, 0, -100, 0, 0, 0)
+            teach_mover.move(240, 0, 0, 400, 0, 0, 0)
+
+        except Exception as e:
+            print(f"Failed to move: {e}")
+            return
 
 def main_program():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
     output_data = SharedData()
-    scaling_factor_x = 0.035
-    scaling_factor_y = 0.03
-    scaling_factor_z = 0.025
-    threshold = 0.4
+    scaling_factor_x = 0.04
+    scaling_factor_y = 0.035
+    scaling_factor_z = 0.03
+    threshold = 0.5
     try:
         try:
             executable_path = '/Users/zhaozilin/Documents/Github/synchronized-hand-motion-robot-arm-operation/LeapSDK/samples/build/ImageSample'
@@ -54,6 +74,8 @@ def main_program():
         running = True
         while running:
             line = output_data.get()
+            # if line is None:
+            #     print("need data")
             if line is not None:
                 if line == 'Close':
                     print('Fist')
@@ -83,7 +105,11 @@ def main_program():
                         new_z = hand_z + robot_z
                         print(f"New: {new_x}, {new_y}, {new_z}")
                         
-                        magnitude = math.sqrt(hand_x**2 + hand_y**2 + hand_z**2)
+                        delta_x = new_x - teach_mover.updated_gripper_coordinates[0]
+                        delta_y = new_y - teach_mover.updated_gripper_coordinates[1]
+                        delta_z = new_z - teach_mover.updated_gripper_coordinates[2]
+                        
+                        magnitude = math.sqrt(delta_x**2 + delta_y**2 + delta_z**2)
                         
                         if (magnitude > threshold):
                             try:
@@ -110,5 +136,6 @@ def GUI_tesing():
     # gripper(teach_mover)
 
 if __name__ == "__main__":
+    # test_program()
     main_program()
     # GUI_tesing()

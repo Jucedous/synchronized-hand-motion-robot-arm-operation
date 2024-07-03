@@ -53,8 +53,10 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
     static float origin_x = 0, origin_y = 0, origin_z = 0;
     static int set_origin = 0;
     static int no_hand_message_printed = 0;
+
     time_t now;
     time(&now);
+    static time_t lastPrintTime = 0;
 
     static int previous_fingers_touching = 0;
 
@@ -148,9 +150,9 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
               float change_y = filtered_y - previous_y;
               float change_z = filtered_z - previous_z;
 
-              if ((fabs(change_x) > 1 && fabs(change_x) < 7) || 
-                  (fabs(change_y) > 1 && fabs(change_y) < 7) || 
-                  (fabs(change_z) > 1 && fabs(change_z) < 7)) {
+              if ((fabs(change_x) > 0.5 && fabs(change_x) < 7) || 
+                  (fabs(change_y) > 0.5 && fabs(change_y) < 7) || 
+                  (fabs(change_z) > 0.5 && fabs(change_z) < 7)) {
                   printf("x,y,z position: [%f, %f, %f]\n", filtered_x, filtered_y, filtered_z);
               }
               if (fingers_touching != previous_fingers_touching && hand->grab_strength < 0.95) {

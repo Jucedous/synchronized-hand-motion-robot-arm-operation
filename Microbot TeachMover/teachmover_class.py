@@ -41,14 +41,14 @@ class TeachMover:
         # print(self.updated_step)
         print()
         
-    def test_move_coordinates(self, coordinates):
-        new_step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
-        step_difference = [new - current for new, current in zip(new_step, self.updated_step)]
-        self.updated_gripper_coordinates = [coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4], 0]
-        self.updated_step = new_step
-        print(self.updated_gripper_coordinates)
-        print(self.updated_step)
-        print()
+    # def test_move_coordinates(self, coordinates):
+    #     new_step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4])
+    #     step_difference = [new - current for new, current in zip(new_step, self.updated_step)]
+    #     self.updated_gripper_coordinates = [coordinates[0], coordinates[1], coordinates[2], coordinates[3], coordinates[4], 0]
+    #     self.updated_step = new_step
+    #     print(self.updated_gripper_coordinates)
+    #     print(self.updated_step)
+    #     print()
     
     def move_delta_coordinates(self, delta_coordinates, test_switch):
         # Calculate new coordinates by adding the changes to the current coordinates
@@ -87,12 +87,8 @@ class TeachMover:
             return False
     
     def move(self, speed=0, j1=0, j2=0, j3=0, j4=0, j5=0, j6=0):
-        response = self.send_cmd(f"@STEP {speed}, {j1}, {j2}, {j3}, {j4+j5}, {j4-j5}, {j6+j3}")
+        self.send_cmd(f"@STEP {speed}, {j1}, {j2}, {j3}, {j4+j5}, {j4-j5}, {j6+j3}")
         print("move to ", j1, j2, j3, j4, j5, j6)
-        if (response == "1"):
-            return True
-        else:
-            return False
     
     def gripper_close(self):
         return self.send_cmd(f"@CLOSE")
