@@ -2,7 +2,6 @@ import serial
 import keyboard
 import subprocess
 import threading
-import tkinter as tk
 import subprocess
 import sys
 import re
@@ -10,26 +9,19 @@ import math
 import time
 from GUI import *
 from teachmover_class import TeachMover
-from IK import InverseKinematics
 
 class SharedData:
     def __init__(self):
         self.lock = threading.Lock()
         self.data = None
-        self.read = False
 
     def update(self, new_data):
         with self.lock:
             self.data = new_data
-            self.read = False
 
     def get(self):
         with self.lock:
-            if self.read:
-                return None
-            else:
-                self.read = True
-                return self.data
+            return self.data
             
 def test_program():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
@@ -43,9 +35,8 @@ def test_program():
             # teach_mover.move(200, 0, 0, -100, 0, 0, 0)
             # teach_mover.move(200, 0, 0, -100, 0, 0, 0)
             # teach_mover.move(240, 0, 0, -10, 0, 0, 0)
-            teach_mover.move(240, 0, 0, -400, 0, 0, 0)
-            teach_mover.move(240, 0, 0, -100, 0, 0, 0)
-            teach_mover.move(240, 0, 0, 400, 0, 0, 0)
+            teach_mover.move_ik(240, 0, 0, -400, 0, 0, -100)
+            teach_mover.move_ik(240, 0, 0, 400, 0, 0, 100)
 
         except Exception as e:
             print(f"Failed to move: {e}")
@@ -55,7 +46,7 @@ def main_program():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
     output_data = SharedData()
     scaling_factor_x = 0.04
-    scaling_factor_y = 0.035
+    scaling_factor_y = 0.033
     scaling_factor_z = 0.03
     threshold = 0.5
     try:
@@ -72,6 +63,7 @@ def main_program():
         output_thread = threading.Thread(target=read_buffer, args=(process, output_data))
         output_thread.start()
         running = True
+        previous_gap = 0.0
         while running:
             line = output_data.get()
             # if line is None:
@@ -90,11 +82,17 @@ def main_program():
                         print("Open Gripper")
                         teach_mover.move(240, 0, 0, 0, 0, 0, 450)
                 else:
-                    match = re.search(r'x,y,z position: \[([\d\.-]+), ([\d\.-]+), ([\d\.-]+)\]', line)
+                    match = re.search(r'x,y,z position: \[([\d\.-]+), ([\d\.-]+), ([\d\.-]+)\], thumb_index_distance: ([\d\.-]+), yaw angle: ([\d\.-]+)', line)
                     if match:
                         hand_x = -(float(match.group(3)) * scaling_factor_x)
                         hand_y = -(float(match.group(1)) * scaling_factor_y)
                         hand_z = float(match.group(2)) * scaling_factor_z
+                        
+                        current_gap = float(match.group(4))
+                        gripper_status = int(current_gap)/100
+
+                        current_angle = float(match.group(5))
+                        angle_portion = current_angle / 180
                         
                         robot_x = teach_mover.gripper_coordinates[0]
                         robot_y = teach_mover.gripper_coordinates[1]
@@ -103,7 +101,7 @@ def main_program():
                         new_x = hand_x + robot_x
                         new_y = hand_y + robot_y
                         new_z = hand_z + robot_z
-                        print(f"New: {new_x}, {new_y}, {new_z}")
+                        # print(f"New: {new_x}, {new_y}, {new_z}")
                         
                         delta_x = new_x - teach_mover.updated_gripper_coordinates[0]
                         delta_y = new_y - teach_mover.updated_gripper_coordinates[1]
@@ -111,12 +109,14 @@ def main_program():
                         
                         magnitude = math.sqrt(delta_x**2 + delta_y**2 + delta_z**2)
                         
-                        if (magnitude > threshold):
+                        if ((magnitude > threshold) or (abs(current_gap - previous_gap) >= 7)):
                             try:
-                                teach_mover.move_coordinates([new_x, new_y, new_z, 0, 0])
+                                teach_mover.move_coordinates([new_x, new_y, new_z, 0, 0, gripper_status])
                             except Exception as e:
                                 print(f"Failed to move: {e}")
                                 running = False
+                        previous_gap = current_gap
+            time.sleep(0.01)
     except serial.SerialException:
         print("Failed to connect")
     except KeyboardInterrupt:
