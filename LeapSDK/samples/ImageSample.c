@@ -172,28 +172,12 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
               if ((fabs(change_x) > 1 && fabs(change_x) < 7) || 
                   (fabs(change_y) > 1 && fabs(change_y) < 7) || 
                   (fabs(change_z) > 1 && fabs(change_z) < 7) ||
-                  (fabs(thumb_index_distance - previous_thumb_index_distance) > 5) ||
+                  (fabs(thumb_index_distance - previous_thumb_index_distance) > 3) ||
                   (deltaYaw > YAW_CHANGE_THRESHOLD)){
-                  printf("x,y,z position: [%f, %f, %f], thumb_index_distance: %f, yaw angle: %f\n", filtered_x, filtered_y, filtered_z, thumb_index_distance, filteredYawDegrees);
-                  // previous_x = filtered_x;
-                  // previous_y = filtered_y;
-                  // previous_z = filtered_z;
-                  // previous_thumb_index_distance = thumb_index_distance;
+                  printf("x,y,z position: [%f, %f, %f], thumb_index_distance: %f, yaw angle: %f\n", 
+                  filtered_x, filtered_y, filtered_z, thumb_index_distance, filteredYawDegrees);
                   }
 
-              // } else {
-              //   printf("x,y,z position: [%f, %f, %f], thumb_index_distance: %f\n", previous_x, previous_y, previous_z, previous_thumb_index_distance);
-              // }
-
-              // if (fingers_touching != previous_fingers_touching && hand->grab_strength < 0.95) {
-              //     // If there's a change, print the new state
-              //     printf("Touching: %s\n", fingers_touching ? "True" : "False");
-              //     // Update the previous state of touch
-              //     previous_fingers_touching = fingers_touching;
-              // }
-
-
-              // Update the previous coordinates
               previous_x = filtered_x;
               previous_y = filtered_y;
               previous_z = filtered_z;

@@ -19,10 +19,8 @@ class TeachMover:
         self.default_step = self.ik.FindStep(*self.updated_gripper_coordinates[:5])
         self.updated_step = self.default_step
         
-        self.lm_position = 0
-        self.updated_lm_position = copy.deepcopy(self.lm_position)
-        self.rm_position = 0
-        self.updated_rm_position = copy.deepcopy(self.rm_position)
+        self.rotation_position = 0
+        self.updated_rotation_position = copy.deepcopy(self.rotation_position)
         
         self.gripper_position = 0
         self.updated_gripper_position = copy.deepcopy(self.gripper_position)
@@ -47,16 +45,20 @@ class TeachMover:
         print(" ")
         new_step = self.ik.FindStep(coordinates[0], coordinates[1], coordinates[2], 0, 0)
         step_difference = [new - current for new, current in zip(new_step, self.updated_step)]
-        lm_step = int(coordinates[3] * 1536)
-        rm_step = int(coordinates[4] * 1536)
+        
+        rotation_step = int(coordinates[4] * 1536)
+        rotation_difference = rotation_step - self.updated_rotation_position
+        
         gripper_step = int(coordinates[5] * 600)
         gripper_difference = gripper_step - self.updated_gripper_position
         
-        self.move_ik(240, *step_difference, gripper_difference)
+        self.move_ik(240, step_difference[0], step_difference[1], step_difference[2], 0, rotation_difference, gripper_difference)
         
         self.updated_gripper_coordinates = [coordinates[0], coordinates[1], coordinates[2], 0, 0, 0]
         self.updated_step = new_step
+        self.updated_rotation_position = rotation_step
         self.updated_gripper_position = gripper_step
+        
         print(self.updated_gripper_coordinates)
         print(self.updated_gripper_position)
         # print(self.updated_step)
@@ -135,6 +137,7 @@ class TeachMover:
     def reset_to_default(self):
         self.updated_gripper_coordinates = copy.deepcopy(self.gripper_coordinates)
         self.updated_step = self.default_step
+        self.updated_rotation_position = self.rotation_position
         self.updated_gripper_position = self.gripper_position
     
     def returnToZero(self):
