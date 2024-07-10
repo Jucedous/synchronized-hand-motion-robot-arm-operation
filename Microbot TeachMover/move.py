@@ -24,15 +24,34 @@ class SharedData:
             return self.data
             
 def test_program():
-    teach_mover = TeachMover('/dev/tty.usbserial-1410')
-    while True:
-        try:
-            teach_mover.move_ik(240, 400, 0, 0, 0, 0, 0)
-            teach_mover.move_ik(240, -400, 0, 0, 0, 0, 0)
+    teach_mover1 = TeachMover('/dev/tty.usbserial-1410')
+    teach_mover2 = TeachMover('/dev/tty.usbserial-1440')
+    def move_group1():
+        while True:
+            try:
+                teach_mover1.move_ik(240, 400, 0, 0, 0, 0, 0)
+                teach_mover1.move_ik(240, -400, 0, 0, 0, 0, 0)
+            except Exception as e:
+                print(f"Failed to move group 1: {e}")
+                break
 
-        except Exception as e:
-            print(f"Failed to move: {e}")
-            return
+    def move_group2():
+        while True:
+            try:
+                teach_mover2.move_ik(240, 400, 0, 0, 0, 0, 0)
+                teach_mover2.move_ik(240, -400, 0, 0, 0, 0, 0)
+            except Exception as e:
+                print(f"Failed to move group 2: {e}")
+                break
+
+    thread1 = threading.Thread(target=move_group1)
+    thread2 = threading.Thread(target=move_group2)
+
+    thread1.start()
+    thread2.start()
+
+    thread1.join()
+    thread2.join()
 
 def main_program():
     teach_mover = TeachMover('/dev/tty.usbserial-1410')
@@ -41,7 +60,7 @@ def main_program():
     scaling_factor_y = 0.033
     scaling_factor_z = 0.03
     movement_threshold = 0.5
-    rotation_gap = 1
+    rotation_gap = 3
     gripper_status_gap = 3
     try:
         try:
@@ -102,12 +121,15 @@ def main_program():
                         delta_y = new_y - teach_mover.updated_gripper_coordinates[1]
                         delta_z = new_z - teach_mover.updated_gripper_coordinates[2]
                         
+                        new_rotation = current_rotation - teach_mover.updated_rotation_position
+                        
                         magnitude = math.sqrt(delta_x**2 + delta_y**2 + delta_z**2)
                         
                         if ((magnitude > movement_threshold) or 
                             (abs(current_gripper_gap - previous_gripper_gap) >= gripper_status_gap) or 
                             (abs(current_rotation - previous_rotation) >= rotation_gap)):
                             try:
+                                print(f"Moving to: {new_x}, {new_y}, {new_z}, 0, {rotation_portion}, {gripper_portion}")
                                 teach_mover.move_coordinates([new_x, new_y, new_z, 0, rotation_portion, gripper_portion])
                             except Exception as e:
                                 print(f"Failed to move: {e}")

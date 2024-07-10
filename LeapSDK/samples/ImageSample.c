@@ -96,7 +96,6 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
 
           float filteredYawDegrees = applyMovingAverageFilter(yawDegrees);
           float deltaYaw = fabs(filteredYawDegrees - previousYawDegrees); 
-          previousYawDegrees = filteredYawDegrees;
           
           float palm_x = hand->palm.position.x;
           float palm_y = hand->palm.position.y;
@@ -169,19 +168,20 @@ static void OnFrame(const LEAP_TRACKING_EVENT *frame){
               float change_y = filtered_y - previous_y;
               float change_z = filtered_z - previous_z;
 
-              if ((fabs(change_x) > 1 && fabs(change_x) < 7) || 
-                  (fabs(change_y) > 1 && fabs(change_y) < 7) || 
-                  (fabs(change_z) > 1 && fabs(change_z) < 7) ||
-                  (fabs(thumb_index_distance - previous_thumb_index_distance) > 3) ||
+              if ((fabs(change_x) > 2 && fabs(change_x) < 7) || 
+                  (fabs(change_y) > 2 && fabs(change_y) < 7) || 
+                  (fabs(change_z) > 2 && fabs(change_z) < 7) ||
+                  (fabs(thumb_index_distance - previous_thumb_index_distance) > 5) ||
                   (deltaYaw > YAW_CHANGE_THRESHOLD)){
                   printf("x,y,z position: [%f, %f, %f], thumb_index_distance: %f, yaw angle: %f\n", 
                   filtered_x, filtered_y, filtered_z, thumb_index_distance, filteredYawDegrees);
-                  }
 
-              previous_x = filtered_x;
-              previous_y = filtered_y;
-              previous_z = filtered_z;
-              previous_thumb_index_distance = thumb_index_distance;
+                  previous_x = filtered_x;
+                  previous_y = filtered_y;
+                  previous_z = filtered_z;
+                  previous_thumb_index_distance = thumb_index_distance;
+                  previousYawDegrees = filteredYawDegrees;
+                  }
 
               // Update filter index
               filter_index = (filter_index + 1) % FILTER_SIZE;

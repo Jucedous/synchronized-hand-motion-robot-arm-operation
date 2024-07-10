@@ -59,9 +59,9 @@ class TeachMover:
         self.updated_rotation_position = rotation_step
         self.updated_gripper_position = gripper_step
         
-        print(self.updated_gripper_coordinates)
-        print(self.updated_gripper_position)
-        # print(self.updated_step)
+        # print(self.updated_gripper_coordinates)
+        # print(self.updated_gripper_position)
+        # print(self.updated_rotation_position)
         print()
         
     # def test_move_coordinates(self, coordinates):
