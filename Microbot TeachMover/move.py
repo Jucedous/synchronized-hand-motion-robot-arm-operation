@@ -60,7 +60,7 @@ def main_program():
     scaling_factor_y = 0.033
     scaling_factor_z = 0.03
     movement_threshold = 0.5
-    rotation_gap = 3
+    rotation_gap = 5
     gripper_status_gap = 3
     try:
         try:
@@ -80,6 +80,7 @@ def main_program():
         previous_rotation = 0.0
         while running:
             line = output_data.get()
+            print(line)
             # if line is None:
             #     print("need data")
             if line is not None:
@@ -87,16 +88,8 @@ def main_program():
                     print('Fist')
                     if (teach_mover.returnToZero() == True):
                         running = False
-                elif "Touching:" in line:
-                    touch_state = "True" in line
-                    if touch_state:
-                        print("Close Gripper")
-                        teach_mover.move(240, 0, 0, 0, 0, 0, -450)
-                    elif not touch_state:
-                        print("Open Gripper")
-                        teach_mover.move(240, 0, 0, 0, 0, 0, 450)
                 else:
-                    match = re.search(r'x,y,z position: \[([\d\.-]+), ([\d\.-]+), ([\d\.-]+)\], thumb_index_distance: ([\d\.-]+), yaw angle: ([\d\.-]+)', line)
+                    match = re.search(r'Left hand data \(([\d\.-]+), ([\d\.-]+), ([\d\.-]+), ([\d\.-]+), ([\d\.-]+)\)\. Right hand data \(([\d\.-]+), ([\d\.-]+), ([\d\.-]+), ([\d\.-]+), ([\d\.-]+)\)\.', line)
                     if match:
                         hand_x = -(float(match.group(3)) * scaling_factor_x)
                         hand_y = -(float(match.group(1)) * scaling_factor_y)
@@ -115,13 +108,10 @@ def main_program():
                         new_x = hand_x + robot_x
                         new_y = hand_y + robot_y
                         new_z = hand_z + robot_z
-                        # print(f"New: {new_x}, {new_y}, {new_z}")
                         
                         delta_x = new_x - teach_mover.updated_gripper_coordinates[0]
                         delta_y = new_y - teach_mover.updated_gripper_coordinates[1]
                         delta_z = new_z - teach_mover.updated_gripper_coordinates[2]
-                        
-                        new_rotation = current_rotation - teach_mover.updated_rotation_position
                         
                         magnitude = math.sqrt(delta_x**2 + delta_y**2 + delta_z**2)
                         
@@ -131,11 +121,47 @@ def main_program():
                             try:
                                 print(f"Moving to: {new_x}, {new_y}, {new_z}, 0, {rotation_portion}, {gripper_portion}")
                                 teach_mover.move_coordinates([new_x, new_y, new_z, 0, rotation_portion, gripper_portion])
+                                
                             except Exception as e:
                                 print(f"Failed to move: {e}")
                                 running = False
                         previous_gripper_gap = current_gripper_gap
                         previous_rotation = current_rotation
+
+                        # potential fix on structure and better status update. Waiting for testing.
+                        
+                        # magnitude_condition_met = magnitude > movement_threshold
+                        # gripper_condition_met = abs(current_gripper_gap - previous_gripper_gap) >= gripper_status_gap
+                        # rotation_condition_met = abs(current_rotation - previous_rotation) >= rotation_gap
+
+                        # # Initialize movement parameters with default values
+                        # move_params = [0, 0, 0, 0]  # Assuming these are the default positions for x, y, z, and a placeholder 0 for future use
+                        # rotation_portion_param = 0  # Default rotation portion
+                        # gripper_portion_param = 0  # Default gripper portion
+
+                        # # Update movement parameters based on conditions met
+                        # if magnitude_condition_met:
+                        #     # Update move_params to include new_x, new_y, new_z if magnitude condition is met
+                        #     move_params = [new_x, new_y, new_z, 0]
+
+                        # if gripper_condition_met:
+                        #     # Update gripper_portion_param if gripper condition is met
+                        #     gripper_portion_param = gripper_portion
+                        #     previous_gripper_gap = current_gripper_gap
+
+                        # if rotation_condition_met:
+                        #     # Update rotation_portion_param if rotation condition is met
+                        #     rotation_portion_param = rotation_portion
+                        #     previous_rotation = current_rotation
+
+                        # # Perform movement if any of the conditions are met
+                        # if magnitude_condition_met or gripper_condition_met or rotation_condition_met:
+                        #     try:
+                        #         print(f"Moving to: {move_params}, {rotation_portion_param}, {gripper_portion_param}")
+                        #         teach_mover.move_coordinates(move_params + [rotation_portion_param, gripper_portion_param])
+                        #     except Exception as e:
+                        #         print(f"Failed to move: {e}")
+                        #         running = False
             time.sleep(0.01)
     except serial.SerialException:
         print("Failed to connect")
