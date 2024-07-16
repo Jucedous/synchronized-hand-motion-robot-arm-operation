@@ -89,7 +89,6 @@ Hand_Status applyMovingAverageFilter(MovingAverageFilter* state, float newX, flo
 }
 
 void resetMovingAverageFilter(MovingAverageFilter* filter) {
-    // Reset the buffers for X, Y, Z, Yaw, and Thumb-Index Distance
     for(int i = 0; i < FILTER_SIZE; i++) {
         filter->bufferX[i] = 0.0f;
         filter->bufferY[i] = 0.0f;
@@ -98,11 +97,9 @@ void resetMovingAverageFilter(MovingAverageFilter* filter) {
         filter->bufferIndexThumbDistance[i] = 0.0f;
     }
 
-    // Reset index and count
     filter->index = 0;
     filter->count = 0;
 
-    // Reset previous values
     filter->previousX = 0.0f;
     filter->previousY = 0.0f;
     filter->previousZ = 0.0f;

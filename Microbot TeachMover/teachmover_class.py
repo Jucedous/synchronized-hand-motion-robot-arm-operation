@@ -49,7 +49,7 @@ class TeachMover:
         rotation_step = int(coordinates[4] * 1536)
         rotation_difference = rotation_step - self.updated_rotation_position
         
-        gripper_step = int(coordinates[5] * 600)
+        gripper_step = int(coordinates[5] * 800)
         gripper_difference = gripper_step - self.updated_gripper_position
         
         self.move_ik(240, step_difference[0], step_difference[1], step_difference[2], 0, rotation_difference, gripper_difference)

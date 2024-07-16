@@ -31,12 +31,7 @@ class InverseKinematics:
         
         #Calculate the angle of the gripper motor
         theta5 = (dlw - drw) / 2
-        # theta1_deg = math.degrees(theta1)
-        # theta2_deg = math.degrees(theta2)
-        # theta3_deg = math.degrees(theta3)
-        # print(theta1_deg, theta2_deg, theta3_deg)
-        
-        #Convert the angles to steps
+
         step1 = int(theta1 * self.B_C)
         step2 = int(theta2 * self.S_C)
         step3 = int(theta3 * self.E_C)
